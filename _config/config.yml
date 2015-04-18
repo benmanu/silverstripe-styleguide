@@ -3,5 +3,3 @@ Name: kss
 ---
 StyleGuideController:
   sg_service: 'KSSService'
-  css_files:
-    - 'themes/simple/css/layout.css'

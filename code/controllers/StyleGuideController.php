@@ -5,12 +5,14 @@ class StyleGuideController extends ContentController {
 
 	private static $sg_service = '';
 
+	private static $css_base = array();
+
 	private static $css_files = array();
 
 	public function init() {
 		parent::init();
 
-		$this->setService($this->config()->sg_service, Director::BaseFolder() . "/" . $this->ThemeDir() . "/css");
+		$this->setService($this->config()->sg_service, $this->config()->css_base);
 		$this->setRequirements();	
 	}
 
