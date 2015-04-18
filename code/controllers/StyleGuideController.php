@@ -12,7 +12,7 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
-		$this->setService($this->config()->sg_service, $this->config()->css_base);
+		$this->setService($this->config()->sg_service, Director::BaseFolder() . "/" $this->config()->css_base);
 		$this->setRequirements();	
 	}
 
