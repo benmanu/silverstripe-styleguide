@@ -1,0 +1,6 @@
+---
+Name: kmlroutes
+---
+Director:
+  rules:
+    'style-guide/$Action': 'StyleGuideController'
