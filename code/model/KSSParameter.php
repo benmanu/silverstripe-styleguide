@@ -1,6 +1,9 @@
 <?php
 class KSSParameter extends ViewableData {
 
+	/**
+	 * @var Scan\Kss\Parameter
+	 */
 	protected $parameter;
 
 	private static $casting = array(

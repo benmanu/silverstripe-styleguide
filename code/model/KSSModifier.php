@@ -1,8 +1,14 @@
 <?php
 class KSSModifier extends ViewableData {
 
+	/**
+	 * @var Scan\Kss\Modifier
+	 */
 	protected $modifier;
 
+	/**
+	 * @var Scan\Kss\Section
+	 */
 	protected $section;
 
 	private static $casting = array(
