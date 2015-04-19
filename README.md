@@ -11,7 +11,18 @@ Define the base css/scss folder through the site config.
 
 Opens up a controller route `/style-guide`.
 
+Comments tagged with `Styleguide 1.0`, `Styleguide 2.0` etc are used to create the main navigation.
+Sub-navigation sections are generated with tags of `Styleguide 1.1`, `Styleguide 1.2` etc.
+Sub-navigation children are made up of section modifiers like `.btn-default`, `.btn-primary`.
+
 ## Kitchen Sink Example
+	/*
+	#Components
+
+	All the components!
+
+	Styleguide 1.0
+	*/
 	/*
 	#Buttons
 
@@ -39,7 +50,7 @@ Opens up a controller route `/style-guide`.
 
 	Compatible in IE6+, Firefox 2+, Safari 4+.
 
-	Styleguide 2.2
+	Styleguide 1.1
 	*/
 
 See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example.
