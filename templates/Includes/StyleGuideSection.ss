@@ -30,6 +30,9 @@
 			<div class="sg-example">
 				<p>$Template</p>
 			</div>
+			<div class="sg-copy-button">
+				<span data-clipboard-text="$Template.XML" title="Click to copy me.">Copy</span>
+			</div>
 			<div class="sg-code">
 		    	<pre class="prettyprint">$Template.XML</pre>
 		    </div>
@@ -39,6 +42,9 @@
 		<div class="col-sm-12">
 			<div class="sg-example">
 				<p>$MarkupNormal</p>
+			</div>
+			<div class="sg-copy-button">
+				<span data-clipboard-text="$MarkupNormal.XML" title="Click to copy me.">Copy</span>
 			</div>
 			<div class="sg-code">
 		    	<pre class="prettyprint">$MarkupNormal.XML</pre>
@@ -59,6 +65,9 @@
 		    	<div class="sg-example">
 		    		<p>$ExampleHtml</p>
 		    	</div>
+				<div class="sg-copy-button">
+					<span data-clipboard-text="$ExampleHtml.XML" title="Click to copy me.">Copy</span>
+				</div>
 		    	<div class="sg-code">
 		    		<pre class="prettyprint">$ExampleHtml.XML</pre>
 		    	</div>
