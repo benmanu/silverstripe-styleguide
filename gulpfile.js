@@ -12,16 +12,20 @@ var gulp        = require('gulp');
 var sass        = require('gulp-sass');
 var minifyCSS   = require('gulp-minify-css');
 var prefix      = require('gulp-autoprefixer');
+var browserify  = require('browserify');
+var stream      = require('vinyl-source-stream');
 
 // source paths
 var base = ''; // theme root
 
 var build = { // build folders (where will the development happen?)
-	scss: base + 'scss/'
+	scss: base + 'scss/',
+	js: base + 'javascript/'
 }
 
 var dist = { // distribution folders (where should the output live?)
-	css: base + 'css/'
+	css: base + 'dist/css/',
+	js: base + 'dist/js/'
 }
 
 // build paths
@@ -34,6 +38,15 @@ var paths = {
 		watch: [
 			build.scss + '*.scss',
 			build.scss + '**/*.scss'
+		]
+	},
+	scripts: {
+		main: './' + build.js + 'app.js',
+		utilities: build.js + 'components/*.js',
+        dest: dist.js,
+		watch: [
+			build.js + 'app.js',
+			build.js + 'components/*.js'
 		]
 	}
 }
@@ -69,10 +82,41 @@ gulp.task('css:prod', ['css'], function() {
         .pipe(gulp.dest(dest));
 });
 
-gulp.task('watch', ['css:prod'], function() {
+// dev js processing (unminified)
+gulp.task('js', function() {
+
+    var src = paths.scripts.main;
+    var dest = paths.scripts.dest;
+
+    // compile full js
+    return browserify(src)
+        .bundle()
+        .pipe(stream('core.js'))
+        .pipe(gulp.dest(dest));
+
+});
+
+// production js processing (minified)
+gulp.task('js:prod', ['js'], function() {
+
+    var src = paths.scripts.main;
+    var dest = paths.scripts.dest;
+
+    // uglify the js
+    return browserify(src)
+        .transform({global: true}, 'uglifyify')
+        .bundle()
+        .pipe(stream('core.js'))
+        .pipe(gulp.dest(dest));
+
+});
+
+gulp.task('watch', ['css:prod', 'js:prod'], function() {
 	gulp.watch(paths.css.watch, ['css:prod']);
+	gulp.watch(paths.scripts.watch, ['js:prod']);
 });
 
 gulp.task('default', [
-	'css:prod'
+	'css:prod',
+	'js:prod'
 ]);

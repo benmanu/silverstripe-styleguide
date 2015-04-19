@@ -3,6 +3,7 @@ $body-color: #ddd;
 
 body {
     background: $body-color;
+    position: relative;
 }
 
 .affix {
@@ -67,5 +68,11 @@ body {
     }
     &.sg-callout--danger {
         border-left-color: #a94442;
+    }
+
+    p { 
+        &:last-child {
+            margin-bottom: 0px;
+        }
     }
 }

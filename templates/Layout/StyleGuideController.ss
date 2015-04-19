@@ -1,5 +1,5 @@
 <% if $Sections %>
-	<div class="row">
+	<div class="row" id="spy-sections">
 		<div class="col-xs-9">
 			<% loop $Sections %>
 				<% include StyleGuideSection %>

@@ -26,12 +26,11 @@ class StyleGuideController extends ContentController {
 
 	public function setRequirements() {
 		// styleguide requirements
-		Requirements::css(STYLEGUIDE_BASE . '/css/bootstrap.min.css');
-		Requirements::css(STYLEGUIDE_BASE . '/css/styleguide.css');
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/bootstrap.min.css');
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/styleguide.css');
 		
-		Requirements::javascript('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js');
-		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
-		Requirements::javascript(STYLEGUIDE_BASE . '/javascript/bootstrap.min.js');
+		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
+		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert');
 
 		// theme requirements
 		if($files = $this->config()->css_files) {

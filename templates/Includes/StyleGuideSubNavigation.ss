@@ -1,5 +1,5 @@
 <% if SubNavigation %>
-	<nav class="sg-subnav" data-spy="affix" data-offset-top="71">
+	<nav id="sg-subnav" class="sg-subnav">
 		<ul class="nav">
 			<% loop $SubNavigation %>
 			    <li><a href="#{$Reference}" title="$Description">$Title</a></li>

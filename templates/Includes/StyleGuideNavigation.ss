@@ -1,5 +1,5 @@
 <% if $Navigation %>
-	<nav class="navbar navbar-static-top navbar-default">
+	<nav class="navbar navbar-static-top navbar-inverse">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 				<% loop $Navigation %>
