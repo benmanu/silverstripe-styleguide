@@ -42,19 +42,19 @@ class StyleGuideController extends ContentController {
 	 * Set the styleguides css and js requirements.
 	 */
 	public function setRequirements() {
-		// styleguide requirements
-		Requirements::css(STYLEGUIDE_BASE . '/dist/css/bootstrap.min.css');
-		Requirements::css(STYLEGUIDE_BASE . '/dist/css/styleguide.css');
-		
-		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
-		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert');
-
 		// theme requirements
 		if($files = $this->config()->css_files) {
 			foreach($files as $file) {
 				Requirements::css($file);
 			}
 		}
+
+		// styleguide requirements
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/bootstrap.min.css');
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/styleguide.css');
+		
+		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
+		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert');
 	}
 
 	/**
