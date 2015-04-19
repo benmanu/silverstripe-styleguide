@@ -1,6 +1,10 @@
 # silverstripe-styleguide
 Generates a styleguide for a SilverStripe theme using KSS.
 
+## Installation
+	
+	$ composer require benmanu/silverstripe-styleguide
+
 ## Basic Usage
 Define the base css/scss folder through the site config.
 
