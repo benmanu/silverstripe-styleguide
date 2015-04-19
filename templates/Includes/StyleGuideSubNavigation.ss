@@ -2,7 +2,16 @@
 	<nav id="sg-subnav" class="sg-subnav">
 		<ul class="nav">
 			<% loop $SubNavigation %>
-			    <li><a href="#{$Reference}" title="$Description">$Title</a></li>
+			    <li>
+			    	<a data-target="#{$Reference}" href="#{$Reference}" title="$Description">$Title</a>
+				    <% if $Modifiers %>
+				    	<ul class="nav">
+					    	<% loop $Modifiers %>
+					    		<li><a data-target="#{$Reference}" href="#{$Reference}" title="$Description">$Name</a></li>
+					    	<% end_loop %>
+				    	</ul>
+				    <% end_if %>
+			    </li>
 			<% end_loop %>
 			<li><a href="#" title="Top"><small><strong>Back to top</strong></small></a></li>
 		</ul>

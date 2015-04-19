@@ -65,7 +65,7 @@ class KSSSection extends ViewableData {
 		$list = new ArrayList();
 
 		foreach($modifiers as $modifier) {
-			$list->push(new KSSModifier($modifier));
+			$list->push(new KSSModifier($modifier, $this));
 		}
 
 		return $list;

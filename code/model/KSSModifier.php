@@ -3,6 +3,8 @@ class KSSModifier extends ViewableData {
 
 	protected $modifier;
 
+	protected $section;
+
 	private static $casting = array(
 		'Name' 			=> 'Varchar',
 		'ClassName' 	=> 'Varchar',
@@ -10,8 +12,9 @@ class KSSModifier extends ViewableData {
 		'ExampleHtml' 	=> 'HTMLText'
 	);
 
-	public function __construct($modifier) {
+	public function __construct($modifier, $section) {
 		$this->modifier = $modifier;
+		$this->section = $section;
 	}
 
 	public function getName() {
@@ -28,6 +31,11 @@ class KSSModifier extends ViewableData {
 
 	public function getExampleHtml() {
 		return $this->modifier->getExampleHtml();
+	}
+
+	public function getReference() {
+		$filter = URLSegmentFilter::create();
+		return $filter->filter($this->section->getReference() . '-' . $this->getName());
 	}
 
 }

@@ -34,6 +34,25 @@ body {
 	        color: #1b354c;
 	    }
     }
+
+    ul > li {
+        ul {
+            display: none;
+
+            li {
+                a {
+                    font-size: 12px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        &.active {
+            ul {
+                display: block;
+            }
+        }
+    }
 }
 
 .sg-example {

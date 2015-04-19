@@ -56,7 +56,7 @@
 			<h3>Modifiers</h3>
 		</div>
 		<% loop $Modifiers %>
-			<div class="col-sm-12">
+			<div id="$Reference" class="col-sm-12">
 		    	<p><strong>$Name</strong> - $Description</p>
 		    </div>
 		    <div class="col-sm-12">
