@@ -25,13 +25,23 @@
 			</div>
 		<% end_if %>
 	</div>
-	<% if $Markup %>
+	<% if $Template %>
 		<div class="col-sm-12">
 			<div class="sg-example">
-				<p>$Markup</p>
+				<p>$Template</p>
 			</div>
 			<div class="sg-code">
-		    	<pre class="prettyprint">$Markup.XML</pre>
+		    	<pre class="prettyprint">$Template.XML</pre>
+		    </div>
+		</div>
+	<% end_if %>
+	<% if $MarkupNormal %>
+		<div class="col-sm-12">
+			<div class="sg-example">
+				<p>$MarkupNormal</p>
+			</div>
+			<div class="sg-code">
+		    	<pre class="prettyprint">$MarkupNormal.XML</pre>
 		    </div>
 		</div>
 	<% end_if %>

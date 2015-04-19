@@ -11,6 +11,39 @@ Define the base css/scss folder through the site config.
 
 Opens up a controller route `/style-guide`.
 
+## Kitchen Sink Example
+	/*
+	#Buttons
+
+	Use the button classes on an <a>, <button>, or <input> element.
+
+	Markup: 
+	<a class="btn $modifierClass">Button</a>
+
+	Template: Button
+
+	Deprecated:
+	If there was a deprecation notice it would go here.
+
+	Experimental:
+	If there was any experimental notes they would go here.
+
+	.btn-default - Standard button.
+	.btn-default:hover - Subtle hover highlight.
+	.btn-primary - Provides extra visual weight and identifies the primary action in a set of buttons.
+	.btn-success - Indicates a successful or positive action.
+	.btn-danger - Indicates a dangerous or potentially negative action.
+
+	$success - The success hex code variable.
+	$danger - The danger hex code variable.
+
+	Compatible in IE6+, Firefox 2+, Safari 4+.
+
+	Styleguide 2.2
+	*/
+
+See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example.
+
 ## Project Links
  * [KSS](http://warpspire.com/kss/)
  * [kss-php](https://github.com/scaninc/kss-php)
