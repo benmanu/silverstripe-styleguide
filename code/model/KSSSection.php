@@ -83,7 +83,8 @@ class KSSSection extends ViewableData {
 	}
 
 	public function getReference($trimmed = false) {
-		return $this->section->getReference($trimmed);
+		$reference = $this->section->getReference($trimmed);
+		return "section-" . str_replace(".", "-", $reference);
 	}
 
 	public function hasReference() {

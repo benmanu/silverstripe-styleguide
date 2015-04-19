@@ -12,6 +12,9 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
+		// turn off hash_link rewriting for this controller.
+		Config::inst()->update('SSViewer', 'rewrite_hash_links', false);
+		
 		$this->setService($this->config()->sg_service, Director::BaseFolder() . "/" . $this->config()->css_base);
 		$this->setRequirements();	
 	}

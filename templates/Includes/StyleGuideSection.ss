@@ -1,6 +1,6 @@
-<div class="row">
+<div id="$Reference" class="row">
 	<div class="col-sm-12">
-		<h2 id="$Reference">$Title</h2>
+		<h2>$Title</h2>
 		<p>$Description</p>
 		<% if $Parameters %>
 			<ul>
@@ -51,9 +51,7 @@
 		    </div>
 		</div>
 	<% end_if %>
-</div>
-<% if $Modifiers %>
-	<div class="row">
+	<% if $Modifiers %>
 		<div class="col-sm-12">
 			<h3>Modifiers</h3>
 		</div>
@@ -73,5 +71,5 @@
 		    	</div>
 		    </div>
 		<% end_loop %>
-	</div>
-<% end_if %>
+	<% end_if %>
+</div>

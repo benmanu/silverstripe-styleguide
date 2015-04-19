@@ -3,6 +3,7 @@ $body-color: #ddd;
 
 body {
     background: $body-color;
+    height: 100%;
     position: relative;
 }
 
@@ -11,8 +12,18 @@ body {
     width: 100%;
 }
 
-
 .sg-subnav { 
+    ul > li.active > a {
+        padding-left: 18px;
+        border-left: 2px solid #1b354c;
+        color: #1b354c;
+
+        &:hover {
+            padding-left: 18px;
+            border-left: 2px solid #1b354c;
+            color: #1b354c;
+        }
+    }
 	ul > li > a {
         padding-left: 20px;
         color: #777;

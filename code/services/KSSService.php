@@ -30,7 +30,7 @@ class KSSService implements StyleGuide {
 	}
 
 	public function getSection($reference) {
-		$section = $this->kss->getSection($reference);
+		$section = $this->kss->getSection($this->parseReference($reference));
 		return new KSSSection($section);
 	}
 
@@ -46,7 +46,7 @@ class KSSService implements StyleGuide {
 	}
 
 	public function getSectionChildren($reference, $levelsDown = null) {
-		$sections = $this->kss->getSectionChildren($reference, $levelsDown);
+		$sections = $this->kss->getSectionChildren($this->parseReference($reference), $levelsDown);
 
 		$list = new ArrayList();
 		foreach($sections as $section) {
@@ -54,6 +54,12 @@ class KSSService implements StyleGuide {
 		}
 
 		return $list;
+	}
+
+	protected function parseReference($reference) {
+		$reference = str_replace("section-", "", $reference);
+		$reference = str_replace("-", ".", $reference);
+		return $reference;
 	}
 
 }
