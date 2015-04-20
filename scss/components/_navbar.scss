@@ -1,0 +1,86 @@
+/*
+#Navigation
+
+Template: StyleGuideNavigation
+
+$grid-float-breakpoint - @media min-width
+$navbar-inverse-bg - color
+$navbar-inverse-border - color
+$navbar-inverse-link-color - color
+$navbar-inverse-link-hover-color - color
+$navbar-inverse-link-hover-bg - color
+$navbar-inverse-link-active-color - color
+$navbar-inverse-link-active-bg - color
+$nav-link-hover-bg - color
+
+Styleguide 2.1
+*/
+.sg-navbar {
+	position: relative;
+	min-height: 50px; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+
+	// Prevent floats from breaking the navbar
+	@include clearfix;
+
+	@media (min-width: $grid-float-breakpoint) {
+		border-radius: 4px;
+	}
+}
+
+.sg-navbar--static-top {
+	z-index: 1000;
+	border-width: 0 0 1px;
+
+	@media (min-width: $grid-float-breakpoint) {
+		border-radius: 0;
+	}
+}
+
+.sg-navbar__nav {
+	> li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		line-height: 20px;
+	}
+
+	// Uncollapse the nav
+	@media (min-width: $grid-float-breakpoint) {
+		float: left;
+		margin: 0;
+
+		> li {
+			float: left;
+			> a {
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+		}
+	}
+}
+
+.sg-navbar--inverse {
+	background-color: $navbar-inverse-bg;
+	border-color: $navbar-inverse-border;
+
+	.sg-navbar__nav {
+		> li > a {
+			color: $navbar-inverse-link-color;
+
+			&:hover,
+			&:focus {
+				color: $navbar-inverse-link-hover-color;
+				background-color: $navbar-inverse-link-hover-bg;
+			}
+		}
+		> .active > a {
+			&,
+			&:hover,
+			&:focus {
+				color: $navbar-inverse-link-active-color;
+				background-color: $navbar-inverse-link-active-bg;
+			}
+		}
+	}
+}

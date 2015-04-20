@@ -50,8 +50,7 @@ class StyleGuideController extends ContentController {
 		}
 
 		// styleguide requirements
-		Requirements::css(STYLEGUIDE_BASE . '/dist/css/bootstrap.min.css');
-		Requirements::css(STYLEGUIDE_BASE . '/dist/css/styleguide.css');
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
 		
 		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
 		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert');

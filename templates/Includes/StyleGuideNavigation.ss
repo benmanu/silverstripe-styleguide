@@ -1,7 +1,7 @@
 <% if $Navigation %>
-	<nav class="navbar navbar-static-top navbar-inverse">
-		<div class="container-fluid">
-			<ul class="nav navbar-nav">
+	<nav class="sg-navbar sg-navbar--static-top sg-navbar--inverse">
+		<div class="sg-container--fluid">
+			<ul class="sg-nav sg-navbar__nav">
 				<% loop $Navigation %>
 		    		<li<% if $Active %> class="active"<% end_if %>>
 		    			<a href="$Link" title="$Description">$Title</a>

@@ -1,5 +1,5 @@
-<div id="$Reference" class="row">
-	<div class="col-sm-12">
+<div id="$Reference" class="sg-row">
+	<div class="sg-col-sm-12">
 		<h2>$Title</h2>
 		<p>$Description</p>
 		<% if $Parameters %>
@@ -26,7 +26,7 @@
 		<% end_if %>
 	</div>
 	<% if $Template %>
-		<div class="col-sm-12">
+		<div class="sg-col-sm-12">
 			<div class="sg-example">
 				<p>$Template</p>
 			</div>
@@ -39,7 +39,7 @@
 		</div>
 	<% end_if %>
 	<% if $MarkupNormal %>
-		<div class="col-sm-12">
+		<div class="sg-col-sm-12">
 			<div class="sg-example">
 				<p>$MarkupNormal</p>
 			</div>
@@ -52,14 +52,14 @@
 		</div>
 	<% end_if %>
 	<% if $Modifiers %>
-		<div class="col-sm-12">
+		<div class="sg-col-sm-12">
 			<h3>Modifiers</h3>
 		</div>
 		<% loop $Modifiers %>
-			<div id="$Reference" class="col-sm-12">
+			<div id="$Reference" class="sg-col-sm-12">
 		    	<p><strong>$Name</strong> - $Description</p>
 		    </div>
-		    <div class="col-sm-12">
+		    <div class="sg-col-sm-12">
 		    	<div class="sg-example">
 		    		<p>$ExampleHtml</p>
 		    	</div>

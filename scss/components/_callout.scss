@@ -1,0 +1,43 @@
+/*
+#Callout
+
+Markup:
+<div class="sg-callout $modifierClass">
+    <p>Some callout text can go in here.</p>
+</div>
+
+.sg-callout--success - Use this for happy messages.
+.sg-callout--warning - Use this for warnings.
+.sg-callout--danger - Use this if you really need to catch users attention.
+
+$navbar-inverse-color - color
+$brand-success - color
+$brand-warning - color
+$brand-danger - color
+
+Styleguide 2.3
+*/
+.sg-callout {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid $navbar-inverse-color;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: #fff;
+
+    &.sg-callout--success {
+        border-left-color: $brand-success;
+    }
+    &.sg-callout--warning {
+        border-left-color: $brand-warning;
+    }
+    &.sg-callout--danger {
+        border-left-color: $brand-danger;
+    }
+
+    p { 
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}

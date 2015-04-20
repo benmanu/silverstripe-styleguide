@@ -1,0 +1,74 @@
+/*
+#Sub Navigation
+
+Markup:
+<nav class="sg-subnav">
+    <ul class="sg-nav">
+        <li>
+            <a data-target="#buttons" href="#buttons" title="Buttons link">Buttons</a>
+        </li>
+        <li class="active">
+            <a data-target="#colors" href="#colors" title="Colors link">Colors</a>
+            <ul class="sg-nav">
+                <li><a data-target="#red" href="#red" title="Red color">Red</a></li>
+                <li class="active"><a data-target="#blue" href="#blue" title="Blue color">Blue</a></li>
+                <li><a data-target="#orange" href="#orange" title="Orange color">Orange</a></li>
+                <li><a data-target="#green" href="#green" title="Green color">Green</a></li>
+            </ul>
+        </li>
+        <li>
+            <a data-target="#images" href="#images" title="Images link">Images</a>
+        </li>
+        <li><a href="#" title="Top"><small><strong>Back to top</strong></small></a></li>
+    </ul>
+</nav>
+
+$navbar-inverse-link-color - color
+$navbar-inverse-border - color
+
+Styleguide 2.2
+*/
+.sg-subnav { 
+    ul > li.active > a {
+        padding-left: 18px;
+        border-left: 2px solid $navbar-inverse-border;
+        color: $navbar-inverse-border;
+
+        &:hover {
+            padding-left: 18px;
+            border-left: 2px solid $navbar-inverse-border;
+            color: $navbar-inverse-border;
+        }
+    }
+	ul > li > a {
+        padding-left: 20px;
+        color: $navbar-inverse-link-color;
+
+        &:hover {
+	        padding-left: 19px;
+	        border-left: 1px solid $navbar-inverse-border;
+	        color: $navbar-inverse-border;
+	    }
+    }
+
+    ul > li {
+        ul {
+            display: none;
+
+            li {
+                a {
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                }
+            }
+        }
+
+        &.active {
+            ul {
+                display: block;
+            }
+        }
+    }
+}

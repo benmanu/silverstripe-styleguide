@@ -1,11 +1,11 @@
 <% if $Sections %>
-	<div class="row">
-		<div class="col-xs-9">
+	<div class="sg-row">
+		<div class="sg-col-sm-9">
 			<% loop $Sections %>
 				<% include StyleGuideSection %>
 			<% end_loop %>
 		</div>
-		<div class="col-xs-3">
+		<div class="sg-col-sm-3">
 			<% include StyleGuideSubNavigation %>
 		</div>
 	</div>

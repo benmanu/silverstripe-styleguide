@@ -1,0 +1,52 @@
+/*
+#Grid
+
+Markup: 
+<div>Grid</div>
+
+$screen-sm-min - @media min-width
+$container-sm - @media min-width
+$screen-md-min - @media min-width
+$container-md - @media min-width
+$screen-lg-min - @media min-width
+$container-lg - @media min-width
+
+Styleguide 1.1
+*/
+.sg-container {
+    @include container-fixed;
+
+    @media (min-width: $screen-sm-min) {
+        width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+        width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+        width: $container-lg;
+    }
+}
+
+.sg-container-fluid {
+    @include container-fixed;
+}
+
+.sg-row {
+    @include make-row;
+}
+
+@include make-grid-columns;
+
+@include make-grid(xs);
+
+@media (min-width: $screen-sm-min) {
+    @include make-grid(sm);
+}
+
+@media (min-width: $screen-md-min) {
+    @include make-grid(md);
+}
+
+@media (min-width: $screen-lg-min) {
+    @include make-grid(lg);
+}
