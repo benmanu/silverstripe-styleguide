@@ -9,15 +9,23 @@ Generates a styleguide for a SilverStripe theme using KSS.
 Define the base css/scss folder through the site config.
 
 	StyleGuideController:
-  	  css_base: 'themes/simple/css' 		// the base folder used to render kss.
+  	  css_base: 'styleguide/scss' 			// the base folder used to render kss.
   	  css_files:
-    	- 'themes/simple/css/layout.css' 	// any css theme files to include in the styleguide.
+    	- 'styleguide/dist/css/screen.css' 	// any css theme files to include in the styleguide.
 
 Opens up a controller route `/style-guide`.
 
 Comments tagged with `Styleguide 1.0`, `Styleguide 2.0` etc are used to create the main navigation.
 Sub-navigation sections are generated with tags of `Styleguide 1.1`, `Styleguide 1.2` etc.
 Sub-navigation children are made up of section modifiers like `.btn-default`, `.btn-primary`.
+
+## Example
+You can use the styleguide module scss/css as an example using the below config.
+
+	StyleGuideController:
+  	  css_base: 'styleguide/scss' 			// the base folder used to render kss.
+  	  css_files:
+    	- 'styleguide/dist/css/screen.css' 	// any css theme files to include in the styleguide.
 
 ## Kitchen Sink Example
 	/*
@@ -27,6 +35,7 @@ Sub-navigation children are made up of section modifiers like `.btn-default`, `.
 
 	Styleguide 1.0
 	*/
+
 	/*
 	#Buttons
 
@@ -62,8 +71,3 @@ See the KSS documentation for further details, with the exception being the `Tem
 ## Project Links
  * [KSS](http://warpspire.com/kss/)
  * [kss-php](https://github.com/scaninc/kss-php)
-
-## TODO
- * Add some specificity to the bootstrap code so it doesn't interfere with theme styles.
- * Smart logic around template rendering (eg. populating templates).
- * Access restriction.

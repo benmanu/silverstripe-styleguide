@@ -84,3 +84,16 @@ Styleguide 2.1
 		}
 	}
 }
+
+@media (min-width: $grid-float-breakpoint) {
+	.sg-navbar--left {
+		float: left !important;
+	}
+	.sg-navbar--right {
+		float: right !important;
+
+		~ .sg-navbar-right {
+			margin-right: 0;
+		}
+	}
+}

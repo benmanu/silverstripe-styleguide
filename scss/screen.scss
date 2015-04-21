@@ -1,7 +1,11 @@
-@import "bootstrap";
-
 @import "variables";
-@import "mixins";
+
+@import "utilities/mixins";
+@import "utilities/normalize";
+@import "utilities/print";
+@import "utilities/utilities";
+@import "utilities/responsive-utilities";
+
 @import "styleguide";
 
 /*
@@ -20,3 +24,11 @@ Styleguide 2.0
 @import "components/navbar";
 @import "components/subnav";
 @import "components/callout";
+
+/*
+#Type
+
+Styleguide 3.0
+*/
+@import "components/type";
+@import "components/code";

@@ -1,7 +1,39 @@
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
     background: $gray-lighter;
-    height: 100%;
-    position: relative;
+    // height: 100%;
+    // position: relative;
+}
+
+* {
+    @include box-sizing(border-box);
+}
+*:before,
+*:after {
+    @include box-sizing(border-box);
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus {
+    @include tab-focus;
+  }
 }
 
 .affix {

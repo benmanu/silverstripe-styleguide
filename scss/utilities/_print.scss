@@ -66,42 +66,7 @@
         page-break-after: avoid;
     }
 
-    // Bootstrap specific changes start
-    //
-    // Chrome (OSX) fix for https://github.com/twbs/bootstrap/issues/11245
-    // Once fixed, we can just straight up remove this.
-    select {
-        background: #fff !important;
-    }
-
-    // Bootstrap components
-    .navbar {
+    .sg-navbar {
         display: none;
     }
-    .btn,
-    .dropup > .btn {
-        > .caret {
-            border-top-color: #000 !important;
-        }
-    }
-    .label {
-        border: 1px solid #000;
-    }
-
-    .table {
-        border-collapse: collapse !important;
-
-        td,
-        th {
-            background-color: #fff !important;
-        }
-    }
-    .table-bordered {
-        th,
-        td {
-            border: 1px solid #ddd !important;
-        }
-    }
-
-    // Bootstrap specific changes end
 }

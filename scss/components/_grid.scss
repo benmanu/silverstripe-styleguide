@@ -2,7 +2,61 @@
 #Grid
 
 Markup: 
-<div>Grid</div>
+<div class="sg-container-fluid">
+    <div class="sg-row">
+        <div class="sg-col-xs-12 sg-bg-primary">
+            <p>sg-col-xs-12</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-11 sg-bg-success">
+            <p>sg-col-xs-11</p>
+        </div>
+        <div class="sg-col-xs-1 sg-bg-danger">
+            <p>&nbsp;</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-10 sg-bg-info">
+            <p>sg-col-xs-10</p>
+        </div>
+        <div class="sg-col-xs-2 sg-bg-primary">
+            <p>sg-col-xs-2</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-9 sg-bg-warning">
+            <p>sg-col-xs-9</p>
+        </div>
+        <div class="sg-col-xs-3 sg-bg-success">
+            <p>sg-col-xs-3</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-8 sg-bg-info">
+            <p>sg-col-xs-8</p>
+        </div>
+        <div class="sg-col-xs-4 sg-bg-primary">
+            <p>sg-col-xs-4</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-7 sg-bg-danger">
+            <p>sg-col-xs-7</p>
+        </div>
+        <div class="sg-col-xs-5 sg-bg-warning">
+            <p>sg-col-xs-5</p>
+        </div>
+    </div>
+    <div class="sg-row">
+        <div class="sg-col-xs-6 sg-bg-success">
+            <p>sg-col-xs-6</p>
+        </div>
+        <div class="sg-col-xs-6 sg-bg-primary">
+            <p>sg-col-xs-6</p>
+        </div>
+    </div>
+</div>
 
 $screen-sm-min - @media min-width
 $container-sm - @media min-width
