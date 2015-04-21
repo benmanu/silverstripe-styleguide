@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = require('twbs');
+var $ = require('../lib/scrollspy');
 
 module.exports = function(element, options) {
 	$(element).scrollspy(options);

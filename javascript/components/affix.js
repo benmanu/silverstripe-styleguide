@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = require('twbs');
+var $ = require('../lib/affix');
 
 module.exports = function(element, options) {
 	$(element).affix(options);
