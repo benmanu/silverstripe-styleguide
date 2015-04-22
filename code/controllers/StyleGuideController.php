@@ -4,17 +4,17 @@ class StyleGuideController extends ContentController {
 	/**
      * @var StyleGuide service
      */
-	protected $service;
+	protected $styleguide_service;
 
 	/**
      * @config
      */
-	private static $sg_service = '';
+	private static $service = '';
 
 	/**
      * @config
      */
-	private static $css_base = array();
+	private static $paths = array();
 
 	/**
      * @config
@@ -24,7 +24,18 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
-		$this->setService($this->config()->sg_service, Director::BaseFolder() . "/" . $this->config()->css_base);
+		// set the paths as the document root
+		$paths = array();
+		if(is_array($this->config()->paths)) {
+			foreach($this->config()->paths as $path) {
+				$paths[] = Director::BaseFolder() . "/" . $path;
+			}
+		} elseif(is_string($this->config()->paths)) {
+			$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
+		}
+
+		// set the service
+		$this->setService($this->config()->service, $paths);
 		$this->setRequirements();	
 	}
 
@@ -34,8 +45,8 @@ class StyleGuideController extends ContentController {
 	 * @param String $url  Project base url.
 	 */
 	public function setService($name, $url) {
-		$this->service = Injector::inst()->create($name);
-		$this->service->setURL($url);
+		$this->styleguide_service = Injector::inst()->create($name);
+		$this->styleguide_service->setURL($url);
 	}
 
 	/**
@@ -60,7 +71,7 @@ class StyleGuideController extends ContentController {
 	 * @return ArrayList
 	 */
 	public function getNavigation() {
-		$navigation = $this->service->getNavigation();
+		$navigation = $this->styleguide_service->getNavigation();
 
 		foreach($navigation as $section) {
 			$section->request = $this->request;
@@ -102,10 +113,10 @@ class StyleGuideController extends ContentController {
 
 		if($action = $this->request->param('Action')) {
 			if($action == 'all') {
-				$sections = $this->service->getSections();
+				$sections = $this->styleguide_service->getSections();
 			} else {
-				$sections = $this->service->getSectionChildren($action);
-				$sections->unshift($this->service->getSection($action)); // add the parent
+				$sections = $this->styleguide_service->getSectionChildren($action);
+				$sections->unshift($this->styleguide_service->getSection($action)); // add the parent
 			}
 		}
 

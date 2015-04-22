@@ -1,27 +1,23 @@
 <?php
-class KSSService implements StyleGuide {
+class HologramService implements StyleGuide {
 
 	/**
-	 * @var KSSParser
+	 * @var \StyleGuide\Parser
 	 */
 	protected $parser;
 
 	/**
 	 * @var String
 	 */
-	protected $url;
-
-	private static $casting = array(
-		'Title' => 'String'
-	);
+	protected $paths;
 
 	/**
 	 * Absolute path to the css/scss/sass directory on the system.
-	 * @param String $url
+	 * @param String $paths
 	 */
-	public function setURL($url) {
-		$this->url = $url;
-		$this->parser = new KSSParser($this->url);
+	public function setURL($paths) {
+		$this->paths = $paths;
+		$this->parser = new \StyleGuide\HologramParser($this->paths);
 	}
 
 	/**
@@ -33,7 +29,7 @@ class KSSService implements StyleGuide {
 		$list = new ArrayList();
 
 		foreach($topSections as $section) {
-			$list->push($section);
+			$list->push(new KSSSection($section));
 		}
 
 		return $list;
@@ -45,7 +41,8 @@ class KSSService implements StyleGuide {
 	 * @return ArrayList
 	 */
 	public function getSection($reference) {
-		return $this->parser->getSection($this->parseReference($reference));
+		$section = $this->kss->getSection($this->parseReference($reference));
+		return new KSSSection($section);
 	}
 
 	/**
@@ -53,11 +50,11 @@ class KSSService implements StyleGuide {
 	 * @return ArrayList
 	 */
 	public function getSections() {
-		$sections = $this->parser->getSections();
+		$sections = $this->kss->getSections();
 
 		$list = new ArrayList();
 		foreach($sections as $section) {
-			$list->push($section);
+			$list->push(new KSSSection($section));
 		}
 
 		return $list;
@@ -70,11 +67,11 @@ class KSSService implements StyleGuide {
 	 * @return ArrayList
 	 */
 	public function getSectionChildren($reference, $levelsDown = null) {
-		$sections = $this->parser->getSectionChildren($this->parseReference($reference), $levelsDown);
+		$sections = $this->kss->getSectionChildren($this->parseReference($reference), $levelsDown);
 
 		$list = new ArrayList();
 		foreach($sections as $section) {
-			$list->push($section);
+			$list->push(new KSSSection($section));
 		}
 
 		return $list;

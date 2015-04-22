@@ -15,7 +15,7 @@
 	],
 	"require": {
 		"silverstripe/framework": "~3.1",
-		"scan/kss-php": "dev-master"
+		"symfony/finder": "~2.6"
 	},
 	"extra": {
 		"installer-name": "styleguide"

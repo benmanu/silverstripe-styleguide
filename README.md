@@ -9,7 +9,8 @@ Generates a styleguide for a SilverStripe theme using KSS.
 Define the base css/scss folder through the site config.
 
 	StyleGuideController:
-  	  css_base: 'styleguide/scss' 			// the base folder used to render kss.
+	  service: 'KSSService'
+  	  paths: 'styleguide/scss' 			// the base folder used to render kss.
   	  css_files:
     	- 'styleguide/dist/css/screen.css' 	// any css theme files to include in the styleguide.
 
@@ -23,9 +24,10 @@ Sub-navigation children are made up of section modifiers like `.btn-default`, `.
 You can use the styleguide module scss/css as an example using the below config.
 
 	StyleGuideController:
-  	  css_base: 'styleguide/scss' 			// the base folder used to render kss.
+	  service: 'KSSService'
+  	  paths: 'styleguide/scss'
   	  css_files:
-    	- 'styleguide/dist/css/screen.css' 	// any css theme files to include in the styleguide.
+    	- 'styleguide/dist/css/screen.css'
 
 ## Kitchen Sink Example
 	/*

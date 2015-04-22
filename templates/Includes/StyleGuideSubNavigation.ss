@@ -3,7 +3,7 @@
         <ul class="sg-nav">
             <% loop $SubNavigation %>
                 <li>
-                    <a data-target="#{$Reference}" href="#{$Reference}" title="$Description">$Title</a>
+                    <a data-target="#{$ReferenceID}" href="#{$ReferenceID}" title="$Description">$Title</a>
                     <% if $Modifiers %>
                         <ul class="sg-nav">
                             <% loop $Modifiers %>

@@ -1,4 +1,4 @@
-<div id="$Reference" class="sg-row">
+<div id="$ReferenceID" class="sg-row">
 	<div class="sg-col-sm-12">
 		<h2>$Title</h2>
 		<p>$Description</p>
