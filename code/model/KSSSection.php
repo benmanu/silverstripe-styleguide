@@ -6,7 +6,7 @@ class KSSSection extends Section {
 
 	private static $casting = array(
 		'Title' 		=> 'Varchar',
-		'Description' 	=> 'Varchar',
+		'Description' 	=> 'HTMLText',
 		'Markup' 		=> 'HTMLText',
 		'MarkupNormal'  => 'HTMLText',
 		'Deprecated' 	=> 'Varchar',
@@ -61,7 +61,9 @@ class KSSSection extends Section {
             }
         }
 
-		return implode("\n\n", $descriptionSections);
+		$description = implode("\n\n", $descriptionSections);
+
+        return Parsedown::instance()->text($description);
 	}
 
 	/**

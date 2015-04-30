@@ -70,6 +70,9 @@ You can use the styleguide module scss/css as an example using the below config.
 
 See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example.
 
+All comment descriptions are treated as markdown and parsed through [parsedown](http://parsedown.org/).
+
 ## Project Links
  * [KSS](http://warpspire.com/kss/)
  * [kss-php](https://github.com/scaninc/kss-php)
+ * [parsedown](http://parsedown.org/)
