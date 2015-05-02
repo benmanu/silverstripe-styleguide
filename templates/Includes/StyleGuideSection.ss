@@ -41,7 +41,7 @@
 	<% if $MarkupNormal %>
 		<div class="sg-col-sm-12">
 			<div class="sg-example">
-				<p>$MarkupNormal</p>
+				$MarkupNormal
 			</div>
 			<div class="sg-copy-button">
 				<span data-clipboard-text="$MarkupNormal.XML" title="Click to copy me.">Copy</span>
@@ -61,7 +61,7 @@
 		    </div>
 		    <div class="sg-col-sm-12">
 		    	<div class="sg-example">
-		    		<p>$ExampleHtml</p>
+		    		$ExampleHtml
 		    	</div>
 				<div class="sg-copy-button">
 					<span data-clipboard-text="$ExampleHtml.XML" title="Click to copy me.">Copy</span>
