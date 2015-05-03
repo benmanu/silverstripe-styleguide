@@ -61,6 +61,12 @@ a {
 }
 
 .sg-code {
+    display: none;
+
+    &.sg-code--active {
+        display: block;
+    }
+
     pre.prettyprint {
         border: 1px solid $navbar-inverse-color;
         border-top: none;
@@ -69,9 +75,10 @@ a {
     }
 }
 
-.sg-copy-button {
+.sg-example--buttons {
     position: relative;
-    span {
+
+    a {
         position: absolute;
         top: 0;
         right: 0;
@@ -87,6 +94,13 @@ a {
 
         &:hover {
             background-color: $gray-lighter;
+        }
+
+        &.sg-example__copy {
+            right: 46px;
+        }
+        &.sg-example__toggle {
+            border-radius: 0;
         }
     }
 }

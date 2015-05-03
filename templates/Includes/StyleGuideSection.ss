@@ -30,8 +30,9 @@
 			<div class="sg-example">
 				<p>$Template</p>
 			</div>
-			<div class="sg-copy-button">
-				<span data-clipboard-text="$Template.XML" title="Click to copy me.">Copy</span>
+			<div class="sg-example--buttons">
+				<a data-clipboard-text="$Template.XML" title="Click to copy me." class="sg-example__copy">Copy</a>
+				<a title="Click to display the code." class="sg-example__toggle">Code</a>
 			</div>
 			<div class="sg-code">
 		    	<pre class="prettyprint">$Template.XML</pre>
@@ -43,8 +44,9 @@
 			<div class="sg-example">
 				$MarkupNormal
 			</div>
-			<div class="sg-copy-button">
-				<span data-clipboard-text="$MarkupNormal.XML" title="Click to copy me.">Copy</span>
+			<div class="sg-example--buttons">
+				<a data-clipboard-text="$MarkupNormal.XML" title="Click to copy me." class="sg-example__copy">Copy</a>
+				<a title="Click to display the code." class="sg-example__toggle">Code</a>
 			</div>
 			<div class="sg-code">
 		    	<pre class="prettyprint">$MarkupNormal.XML</pre>
@@ -63,8 +65,9 @@
 		    	<div class="sg-example">
 		    		$ExampleHtml
 		    	</div>
-				<div class="sg-copy-button">
-					<span data-clipboard-text="$ExampleHtml.XML" title="Click to copy me.">Copy</span>
+				<div class="sg-example--buttons">
+					<a data-clipboard-text="$ExampleHtml.XML" title="Click to copy me." class="sg-example__copy">Copy</a>
+					<a title="Click to display the code." class="sg-example__toggle">Code</a>
 				</div>
 		    	<div class="sg-code">
 		    		<pre class="prettyprint">$ExampleHtml.XML</pre>

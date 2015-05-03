@@ -96,6 +96,7 @@ Styleguide 1.1
 
 .sg-row {
     @include make-row;
+    margin-bottom: 24px;
 }
 
 @include make-grid-columns;

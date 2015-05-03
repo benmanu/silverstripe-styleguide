@@ -3,6 +3,6 @@
 var ZeroClipboard = require('zeroclipboard'),
 	$ = require('jquery');
 
-$('.sg-copy-button span').each(function() {
+$('.sg-example__copy').each(function() {
 	new ZeroClipboard($(this));
 });
