@@ -21,6 +21,11 @@ class StyleGuideController extends ContentController {
      */
 	private static $css_files = array();
 
+	/**
+     * @config
+     */
+	private static $js_files = array();
+
 	public function init() {
 		parent::init();
 
@@ -57,6 +62,12 @@ class StyleGuideController extends ContentController {
 		if($files = $this->config()->css_files) {
 			foreach($files as $file) {
 				Requirements::css($file);
+			}
+		}
+
+		if($files = $this->config()->js_files) {
+			foreach($files as $file) {
+				Requirements::javascript($file);
 			}
 		}
 
