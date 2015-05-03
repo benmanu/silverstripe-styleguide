@@ -217,7 +217,7 @@ class KSSSection extends Section {
 
         if($templateComment = $this->getTemplateComment()) {
         	$template = trim(preg_replace('/^\s*Template:/i', '', $templateComment));
-        	$template = Controller::curr()->renderWith($template);
+            $template = $this->getRenderedTemplate($template);
         }
 
 		return $template;

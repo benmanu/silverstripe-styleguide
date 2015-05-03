@@ -46,4 +46,24 @@ class Section extends \ViewableData {
         return $this->file->getFilename();
     }
 
+    /**
+     * Render a SilverStripe template with fixture data if set.
+     * @param  String $template The name of the template.
+     * @return String           HTMLText string of the rendered template.
+     */
+    public function getRenderedTemplate($template) {
+        $controller = \Controller::curr();
+        $factory = $controller->getFactory();
+
+        // if the factory is set and the fixture object exists render the template with
+        // the object.
+        if($factory) {
+            if($obj = $factory->get('StyleGuide', $template)) {
+                return $obj->renderWith($template);
+            }  
+        }
+
+        return $controller->renderWith($template);
+    }
+
 }

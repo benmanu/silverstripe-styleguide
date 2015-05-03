@@ -7,6 +7,11 @@ class StyleGuideController extends ContentController {
 	protected $styleguide_service;
 
 	/**
+     * @var StyleGuideFixtureFactory
+     */
+	protected $factory;
+
+	/**
      * @config
      */
 	private static $service = '';
@@ -41,7 +46,10 @@ class StyleGuideController extends ContentController {
 
 		// set the service
 		$this->setService($this->config()->service, $paths);
-		$this->setRequirements();	
+		$this->setRequirements();
+
+		// load the fixture file
+		$this->loadFixture();
 	}
 
 	/**
@@ -75,6 +83,36 @@ class StyleGuideController extends ContentController {
 		Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
 		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
 		Requirements::javascript('//google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert');
+	}
+
+	/**
+	 * Load a yml fixture file if defined into an {@link StyleGuideFixtureFactory}.
+	 * Used to populate templates.
+	 */
+	public function loadFixture() {
+		$fixtureFile = 'mysite/_config/styleguide.yml';
+
+		$realFile = realpath(BASE_PATH.'/'.$fixtureFile);
+		$baseDir = realpath(Director::baseFolder());
+		if(!$realFile || !file_exists($realFile)) {
+			return;
+		} else if(substr($realFile,0,strlen($baseDir)) != $baseDir) {
+			return;
+		} else if(substr($realFile,-4) != '.yml') {
+			return;
+		}
+
+		$factory = Injector::inst()->create('StyleGuideFixtureFactory');
+		$blueprint = Injector::inst()->create('StyleGuideBlueprint', 'StyleGuide', 'StyleGuide');
+		$factory->define('StyleGuide', $blueprint);
+		$fixture = Injector::inst()->create('YamlFixture', $fixtureFile);
+		$fixture->writeInto($factory);
+
+		$this->factory = $factory;
+	}
+
+	public function getFactory() {
+		return $this->factory;
 	}
 
 	/**
