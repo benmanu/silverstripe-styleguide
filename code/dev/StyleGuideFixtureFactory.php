@@ -1,20 +1,29 @@
 <?php
 class StyleGuideFixtureFactory extends FixtureFactory {
 
-	public function createObject($name, $identifier, $data = null) {
-		if(!isset($this->blueprints[$name])) {
-			$this->blueprints[$name] = new FixtureBlueprint($name);
-		}
-		$blueprint = $this->blueprints[$name];
-		$obj = $blueprint->createObject($identifier, $data, $this->fixtures);
-		$class = $blueprint->getClass();
+	/**
+	 * @param String $name Unique name for this blueprint
+	 * @param array|FixtureBlueprint $defaults Array of default values, or a blueprint instance
+	 */
+	public function define($name, $defaults = array()) {
+		$this->blueprints[$name] = $defaults;
+		return $this;
+	}
 
-		if(!isset($this->fixtures[$class])) {
-			$this->fixtures[$class] = array();
+	public function createObject($name, $identifier, $data = null) {
+		$blueprint = $this->blueprints['StyleGuide'];
+		$obj = $blueprint->createObject($identifier, $data, $this->fixtures);
+
+		if(!isset($this->fixtures[$name])) {
+			$this->fixtures[$name] = array();
 		}
-		$this->fixtures[$class][$identifier] = $obj;
+		$this->fixtures[$name][$identifier] = $obj;
 
 		return $obj;
+	}
+
+	public function createRaw($table, $identifier, $data) {
+		return $this->createObject($table, $identifier, $data);
 	}
 
 	public function get($class, $identifier) {

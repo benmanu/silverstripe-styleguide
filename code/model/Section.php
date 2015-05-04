@@ -58,7 +58,7 @@ class Section extends \ViewableData {
         // if the factory is set and the fixture object exists render the template with
         // the object.
         if($factory) {
-            if($obj = $factory->get('StyleGuide', $template)) {
+            if($obj = $factory->get('Template', $template)) {
                 return $obj->renderWith($template);
             }  
         }

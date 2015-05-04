@@ -1,5 +1,5 @@
 # silverstripe-styleguide
-Generates a styleguide for a SilverStripe theme using KSS.
+Generates a styleguide for a SilverStripe theme using CSS documentation.
 
 ## Installation
 	
@@ -9,10 +9,11 @@ Generates a styleguide for a SilverStripe theme using KSS.
 Define the base css/scss folder through the site config.
 
 	StyleGuideController:
-	  service: 'KSSService'
-  	  paths: 'styleguide/scss' 			// the base folder used to render kss.
+  	  paths: 'styleguide/scss' 				// the base folder used to render kss.
   	  css_files:
-    	- 'styleguide/dist/css/screen.css' 	// any css theme files to include in the styleguide.
+    	- 'themes/default/css/screen.css' 	// any css theme files to include in the styleguide.
+  	  js_files:
+    	- 'themes/default/js/script.js' 	// any js theme files to include in the styleguide.
 
 Opens up a controller route `/style-guide`.
 
@@ -24,7 +25,6 @@ Sub-navigation children are made up of section modifiers like `.btn-default`, `.
 You can use the styleguide module scss/css as an example using the below config.
 
 	StyleGuideController:
-	  service: 'KSSService'
   	  paths: 'styleguide/scss'
   	  css_files:
     	- 'styleguide/dist/css/screen.css'
@@ -68,11 +68,44 @@ You can use the styleguide module scss/css as an example using the below config.
 	Styleguide 1.1
 	*/
 
-See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example.
+See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example (see Fixtures below).
 
 All comment descriptions are treated as markdown and parsed through [parsedown](http://parsedown.org/).
 
+## Fixtures
+A yml fixture file can be created in the **(project)/styleguide/** directory called **styleguide.yml**, used to populate template variables. 
+
+All template files should be placed under the key **Template**, example:
+	
+	Template:
+  	  Footer:
+  	  	FooterContent: '<p>Here is some footer content</p>'
+
+Alternatively you can reference other non-template values to populate relationships (has_one, has_many, many_many) and field values, example:
+	
+	SiteConfig:
+	  main:
+	  	Title: MySite Title
+    Site:
+  	  link1:
+        Link: #link1
+        Text: Link 1
+      link2:
+        Link: #link2
+        Text: Link 2
+      link3:
+        Link: #link3
+        Text: Link 3
+	StyleGuide:
+  	  main:
+        Content: '<p>Here is some footer content</p>'
+	
+	Template:
+  	  Footer:
+  	  	SiteConfig: =>SiteConfig.main
+  	  	FooterLinks: =>Site.link1, =>Site.link2, =>Site.link3
+  	  	FooterContent: =>StyleGuide.main.Content
+
 ## Project Links
  * [KSS](http://warpspire.com/kss/)
- * [kss-php](https://github.com/scaninc/kss-php)
  * [parsedown](http://parsedown.org/)

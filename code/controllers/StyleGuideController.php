@@ -90,7 +90,7 @@ class StyleGuideController extends ContentController {
 	 * Used to populate templates.
 	 */
 	public function loadFixture() {
-		$fixtureFile = 'mysite/_config/styleguide.yml';
+		$fixtureFile = project() . '/styleguide/styleguide.yml';
 
 		$realFile = realpath(BASE_PATH.'/'.$fixtureFile);
 		$baseDir = realpath(Director::baseFolder());

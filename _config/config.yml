@@ -1,3 +1,5 @@
 ---
-Name: kss
+Name: StyleGuide
 ---
+StyleGuideController:
+  service: 'KSSService'
