@@ -636,7 +636,7 @@ class KSSSection extends Section {
 	 * @return String
 	 */
 	public function getLink() {
-		return StyleGuideController::getLink($this->getReferenceID());
+		return $this->getReferenceID();
 	}
 
 }
