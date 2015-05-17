@@ -48,6 +48,8 @@ You can use the styleguide module scss/css as an example using the below config.
 
 	Template: Button
 
+	SectionTemplate: SGColorPalette
+
 	Deprecated:
 	If there was a deprecation notice it would go here.
 
@@ -68,7 +70,7 @@ You can use the styleguide module scss/css as an example using the below config.
 	Styleguide 1.1
 	*/
 
-See the KSS documentation for further details, with the exception being the `Template:` parameter. This will render a SilverStripe template file as the example (see Fixtures below).
+See the KSS documentation for further details, with a couple of exceptions being the `Template:`, and `SectionTemplate:` parameters. The `Template:` parameter will render a SilverStripe template file as the example (see Fixtures below), and the `SectionTemplate:` will render a SilverStripe template file as the Section display.
 
 All comment descriptions are treated as markdown and parsed through [parsedown](http://parsedown.org/).
 

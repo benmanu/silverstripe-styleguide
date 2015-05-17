@@ -7,6 +7,7 @@ class KSSSection extends Section {
 	private static $casting = array(
 		'Title' 		=> 'Varchar',
 		'Description' 	=> 'HTMLText',
+        'Template'      => 'HTMLText',
 		'Markup' 		=> 'HTMLText',
 		'MarkupNormal'  => 'HTMLText',
 		'Deprecated' 	=> 'Varchar',
@@ -56,6 +57,7 @@ class KSSSection extends Section {
                 && $commentSection != $this->getModifiersComment()
                 && $commentSection != $this->getParametersComment()
                 && $commentSection != $this->getTemplateComment()
+                && $commentSection != $this->getSectionTemplateComment()
             ) {
                 $descriptionSections[] = $commentSection;
             }
@@ -208,7 +210,7 @@ class KSSSection extends Section {
 	}
 
 	/**
-	 * Returns the section template if defined, rendered with the current controller.
+	 * Returns the template if defined, rendered with the fixture or controller.
 	 * 
 	 * @return HTMLText
 	 */
@@ -222,6 +224,21 @@ class KSSSection extends Section {
 
 		return $template;
 	}
+
+    /**
+     * Returns the section template if defined.
+     * 
+     * @return HTMLText
+     */
+    public function getSectionTemplate() {
+        $template = null;
+
+        if($templateComment = $this->getSectionTemplateComment()) {
+            $template = trim(preg_replace('/^\s*SectionTemplate:/i', '', $templateComment));
+        }
+
+        return $template;
+    }
 
 	/**
      * Returns the reference number for the section
@@ -615,6 +632,25 @@ class KSSSection extends Section {
 		return $templateComment;
 	}
 
+    /**
+     * Returns the part of the KSS Comment Block that contains the section template
+     * 
+     * @return String
+     */
+    protected function getSectionTemplateComment() {
+        $templateComment = null;
+
+        foreach ($this->getCommentSections() as $commentSection) {
+            // Assume that the parameters section starts with $,%,@
+            if (preg_match('/^\s*SectionTemplate:/i', $commentSection)) {
+                $templateComment = $commentSection;
+                break;
+            }
+        }
+
+        return $templateComment;
+    }
+
 	/**
 	 * Checks if the current section is the active route.
 	 * @return Boolean
@@ -638,5 +674,15 @@ class KSSSection extends Section {
 	public function getLink() {
 		return $this->getReferenceID();
 	}
+
+    public function forTemplate() {
+        $template = $this->getSectionTemplate();
+
+        if(!$template) {
+            $template = 'SGSection';
+        }
+
+        return $this->renderWith($template);
+    }
 
 }
