@@ -1,4 +1,9 @@
 <?php
+/**
+ * StyleGuideController
+ *
+ * @package StyleGuide
+ */
 class StyleGuideController extends ContentController {
 
 	/**
@@ -39,19 +44,9 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
-		// set the paths as the document root
-		$paths = array();
-		if(is_array($this->config()->paths)) {
-			foreach($this->config()->paths as $path) {
-				$paths[] = Director::BaseFolder() . "/" . $path;
-			}
-		} elseif(is_string($this->config()->paths)) {
-			$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
-		}
+		$this->setService($this->config()->service);
 
-		$this->setService($this->config()->service, $paths);
-
-		$this->pageService = new PageService($this);
+		$this->pageService = new StyleGuide\PageService($this);
 
 		// redirect to the first action route
 		if(!$this->request->param('Action')) {
@@ -88,12 +83,24 @@ class StyleGuideController extends ContentController {
 
 	/**
 	 * Set the styleguide service on init.
-	 * @param String $name The name of the styleguide service.
-	 * @param String $url  Project base url.
+	 * @param String $name 		The name of the styleguide service.
+	 * @param String $paths  	Project base url.
 	 */
-	public function setService($name, $url) {
+	public function setService($name, $paths = null) {
+		if(!$paths) {
+			// set the paths as the document root
+			$paths = array();
+			if(is_array($this->config()->paths)) {
+				foreach($this->config()->paths as $path) {
+					$paths[] = Director::BaseFolder() . "/" . $path;
+				}
+			} elseif(is_string($this->config()->paths)) {
+				$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
+			}
+		}
+
 		$this->styleguide_service = Injector::inst()->create($name);
-		$this->styleguide_service->setURL($url);
+		$this->styleguide_service->setURL($paths);
 	}
 
 	/**

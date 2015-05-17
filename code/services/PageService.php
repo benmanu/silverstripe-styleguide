@@ -2,6 +2,8 @@
 /**
  * PageService
  */
+namespace StyleGuide;
+
 class PageService {
 
     protected $pages;
@@ -14,7 +16,7 @@ class PageService {
     }
 
     private function setPages() {
-        $parser = new StyleGuide\YamlParser(project() . '/styleguide/pages.yml');
+        $parser = new YamlParser(project() . '/styleguide/pages.yml');
         
         $pages = $parser->get('Page');
         
@@ -26,17 +28,17 @@ class PageService {
             $child->setField('Template', 'StyleGuide');
         }
 
-        $pages['StyleGuide'] = new ArrayData(array(
+        $pages = array_merge(array('StyleGuide' => new \ArrayData(array(
             'ID'        => 'styleGuide',
             'Title'     => 'Style Guide',
             'Children'  => $children
-        ));
+        ))), $pages);
 
         $this->pages = $pages;
     }
 
     public function getPages() {
-        $navigation = new ArrayList();
+        $navigation = new \ArrayList();
 
         // Add the custom navigation.
         if(isset($this->pages)) foreach($this->pages as $item) {
@@ -55,7 +57,7 @@ class PageService {
 
                 // if active and has children
                 if($active && isset($item->Children)) {
-                    $children = new ArrayList();
+                    $children = new \ArrayList();
 
                     foreach($item->Children as $childItem) {
                         $childTitle = $childItem->Title;
@@ -70,7 +72,7 @@ class PageService {
                             'Template'  => $childItem->Template
                         );
 
-                        $children->push(new ArrayData($childNav));
+                        $children->push(new \ArrayData($childNav));
                     }
 
                     $nav['Children'] = $children;
@@ -78,7 +80,7 @@ class PageService {
 
                 // $nav = array_merge($item, $nav);
 
-                $navigation->push(new ArrayData($nav));
+                $navigation->push(new \ArrayData($nav));
             }
         }
 
@@ -120,7 +122,7 @@ class PageService {
      * @return string A filtered path compatible with RFC 3986
      */
     protected function fixURLSegment($rawSegment) {
-        $filter = URLSegmentFilter::create();
+        $filter = \URLSegmentFilter::create();
         return $filter->filter($rawSegment);
     }
 
