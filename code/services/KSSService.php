@@ -11,10 +11,6 @@ class KSSService implements StyleGuide {
 	 */
 	protected $url;
 
-	private static $casting = array(
-		'Title' => 'String'
-	);
-
 	/**
 	 * Absolute path to the css/scss/sass directory on the system.
 	 * @param String $url

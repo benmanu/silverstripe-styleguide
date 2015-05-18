@@ -75,7 +75,7 @@ See the KSS documentation for further details, with a couple of exceptions being
 All comment descriptions are treated as markdown and parsed through [parsedown](http://parsedown.org/).
 
 ## Fixtures
-A yml fixture file can be created in the **(project)/styleguide/** directory called **styleguide.yml**, used to populate template variables. 
+A yml fixture file can be created in the **(project)/styleguide/** directory called **fixture.yml**, used to populate template variables. 
 
 All template files should be placed under the key **Template**, example:
 	
@@ -107,6 +107,43 @@ Alternatively you can reference other non-template values to populate relationsh
   	  	SiteConfig: =>SiteConfig.main
   	  	FooterLinks: =>Site.link1, =>Site.link2, =>Site.link3
   	  	FooterContent: =>StyleGuide.main.Content
+
+## Pages
+A yml fixture file can be created in the **(project)/styleguide/** directory called **pages.yml**, used to create additional main and children pages. The `Template` parameter should be the same name as a SilverStripe template file in your theme.
+
+	Documentation:
+	  general:
+	    Title: General
+	    Template: SG_General
+	  css:
+	    Title: Css
+	    Template: SG_Css
+	  js:
+	    Title: Js
+	    Template: SG_Js
+	  git:
+	    Title: Git
+	    Template: SG_Git
+	  images:
+	    Title: Images and icons
+	    Template: SG_ImagesAndIcons
+
+	Children:
+	  child1:
+	    Title: Child 1
+	    Template: SGChild
+	  child2:
+	    Title: Child 2
+	    Template: SGChild
+
+	Page:
+	  documentation:
+	    Title: Documentation
+	    Children: =>Documentation.general, =>Documentation.css, =>Documentation.js, =>Documentation.git, =>Documentation.images
+	  performanceMonitoring:
+	    Title: Performance Monitoring
+	    Template: SGPerformanceMonitoring
+	    Children: =>Children.child1, =>Children.child2
 
 ## Project Links
  * [KSS](http://warpspire.com/kss/)
