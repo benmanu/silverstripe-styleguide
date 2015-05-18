@@ -1,4 +1,5 @@
 # silverstripe-styleguide
+[![Build Status](https://travis-ci.org/benmanu/silverstripe-styleguide.svg?branch=experiments%2Fpages)](https://travis-ci.org/benmanu/silverstripe-styleguide)
 Generates a styleguide for a SilverStripe theme using CSS documentation.
 
 ## Installation
