@@ -135,8 +135,11 @@ class StyleGuideController extends ContentController {
 	 * Used to populate templates.
 	 */
 	public function loadFixture() {
-		$parser = new StyleGuide\YamlParser(project() . '/styleguide/fixture.yml');
-        $this->fixture = $parser->get('Template');
+		$path = project() . '/styleguide/fixture.yml';
+		if(StyleGuide\YamlParser::hasYaml($path)) {
+			$parser = new StyleGuide\YamlParser($path);
+	        $this->fixture = $parser->get('Template');
+	    }
 	}
 
 	public function getFixture() {

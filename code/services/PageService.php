@@ -16,9 +16,13 @@ class PageService {
     }
 
     private function setPages() {
-        $parser = new YamlParser(project() . '/styleguide/pages.yml');
-        
-        $pages = $parser->get('Page');
+        $pages = array();
+        $path = project() . '/styleguide/pages.yml';
+
+        if(YamlParser::hasYaml($path)) {
+            $parser = new YamlParser($path);
+            $pages = $parser->get('Page');
+        }
 
         if(!$pages || empty($pages)) {
             $pages = array();

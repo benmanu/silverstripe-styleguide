@@ -53,4 +53,19 @@ class YamlParser {
         return true;
     }
 
+    public static function hasYaml($path) {
+        $realFile = realpath(BASE_PATH.'/'.$path);
+        $baseDir = realpath(\Director::baseFolder());
+        
+        if(!$realFile || !file_exists($realFile)) {
+            return false;
+        } else if(substr($realFile,0,strlen($baseDir)) != $baseDir) {
+            return false;
+        } else if(substr($realFile,-4) != '.yml') {
+            return false;
+        }
+
+        return true;
+    }
+
 }
