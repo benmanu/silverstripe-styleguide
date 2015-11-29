@@ -11,10 +11,6 @@ class KSSService implements StyleGuide {
 	 */
 	protected $url;
 
-	private static $casting = array(
-		'Title' => 'String'
-	);
-
 	/**
 	 * Absolute path to the css/scss/sass directory on the system.
 	 * @param String $url
@@ -71,7 +67,6 @@ class KSSService implements StyleGuide {
 	 */
 	public function getSectionChildren($reference, $levelsDown = null) {
 		$sections = $this->parser->getSectionChildren($this->parseReference($reference), $levelsDown);
-
 		$list = new ArrayList();
 		foreach($sections as $section) {
 			$list->push($section);

@@ -98,7 +98,6 @@ class KSSParser extends Parser {
 
         $reference = KSSSection::trimReference($reference);
         $reference .= '.';
-
         foreach ($sectionKeys as $sectionKey) {
             $testSectionKey = strtolower(KSSSection::normalizeReference($sectionKey));
             // Only get sections within that level. Do not get the level itself

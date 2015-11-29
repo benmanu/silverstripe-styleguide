@@ -4,13 +4,11 @@ html {
 }
 
 body {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  color: $text-color;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $text-color;
     background: $gray-lighter;
-    // height: 100%;
-    // position: relative;
 }
 
 * {
@@ -41,8 +39,18 @@ a {
     width: 100%;
 }
 
-.sg-example {
+.sg-section-wrap {
+    padding: 0px 15px;
+}
+
+.sg-section {
     background-color: #fff;
+    border: 1px solid darken($gray-lighter, 10%);
+    border-radius: 4px;
+}
+
+.sg-example {
+    background-color: #fbfcfd;
     border: 1px solid $navbar-inverse-color;
     border-radius: 4px 4px 0 0;
     padding: 45px 15px 15px;
@@ -87,9 +95,7 @@ a {
         color: #767676;
         cursor: pointer;
         background-color: #fff;
-        border-bottom: 1px solid $navbar-inverse-color;
-        border-left: 1px solid $navbar-inverse-color;
-        border-right: 1px solid $navbar-inverse-color;
+        border: 1px solid $navbar-inverse-color;
         border-radius: 0 0 0 4px;
 
         &:hover {
@@ -101,6 +107,30 @@ a {
         }
         &.sg-example__toggle {
             border-radius: 0;
+        }
+    }
+}
+
+.sg-swatch {
+    margin-bottom: 15px;
+
+    .sg-swatch__color {
+        min-height: 80px;
+        border-left: 1px solid $navbar-inverse-color;
+        border-right: 1px solid $navbar-inverse-color;
+        border-top: 1px solid $navbar-inverse-color;
+        border-radius: 4px 4px 0 0;
+    }
+    .sg-swatch__var {
+        text-align: center;
+        border-left: 1px solid $navbar-inverse-color;
+        border-right: 1px solid $navbar-inverse-color;
+        border-bottom: 1px solid $navbar-inverse-color;
+        border-radius: 0 0 4px 4px;
+
+        p {
+            margin-top: 0px;
+            padding-top: 1em;
         }
     }
 }

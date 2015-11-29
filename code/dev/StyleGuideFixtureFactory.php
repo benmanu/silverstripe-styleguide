@@ -26,8 +26,11 @@ class StyleGuideFixtureFactory extends FixtureFactory {
 		return $this->createObject($table, $identifier, $data);
 	}
 
-	public function get($class, $identifier) {
-		return (isset($this->fixtures[$class][$identifier]) ? $this->fixtures[$class][$identifier] : null);
+	public function get($class, $identifier = null) {
+		if($identifier) {
+			return (isset($this->fixtures[$class][$identifier]) ? $this->fixtures[$class][$identifier] : null);
+		}
+		return (isset($this->fixtures[$class]) ? $this->fixtures[$class] : null);
 	}
 
 }

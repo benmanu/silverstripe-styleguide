@@ -1,0 +1,60 @@
+/*
+#Components
+
+All the components!
+
+Styleguide 1.0
+*/
+/*
+#Buttons
+
+Use the button classes on an <a>, <button>, or <input> element.
+
+Markup: 
+<a class="btn $modifierClass">Button</a>
+
+Deprecated:
+If there was a deprecation notice it would go here.
+
+Experimental:
+If there was any experimental notes they would go here.
+
+.btn-default - Standard button.
+.btn-default:hover - Subtle hover highlight.
+.btn-primary - Provides extra visual weight and identifies the primary action in a set of buttons.
+.btn-success - Indicates a successful or positive action.
+.btn-danger - Indicates a dangerous or potentially negative action.
+
+$success - The success hex code variable.
+$danger - The danger hex code variable.
+
+Compatible in IE6+, Firefox 2+, Safari 4+.
+
+Styleguide 1.1
+*/
+
+/*
+#Components
+
+All the components!
+
+Styleguide 2.0
+*/
+/*
+#Type
+
+A description of type.
+
+Markup: 
+<h1>Heading 1</h1>
+
+Deprecated:
+If there was a deprecation notice it would go here.
+
+Experimental:
+If there was any experimental notes they would go here.
+
+Compatible in IE6+, Firefox 2+, Safari 4+.
+
+Styleguide 2.1
+*/

@@ -18,6 +18,9 @@
 		"symfony/finder": "~2.8",
 		"erusev/parsedown": "1.6.0"
 	},
+	"require-dev": {
+		"phpunit/PHPUnit": "~3.7@stable"
+	},
 	"extra": {
 		"installer-name": "styleguide"
 	}

@@ -1,4 +1,9 @@
 <?php
+/**
+ * StyleGuideController
+ *
+ * @package StyleGuide
+ */
 class StyleGuideController extends ContentController {
 
 	/**
@@ -7,9 +12,14 @@ class StyleGuideController extends ContentController {
 	protected $styleguide_service;
 
 	/**
-     * @var StyleGuideFixtureFactory
+     * @var ArrayData
      */
-	protected $factory;
+	protected $fixture;
+
+	/**
+     * @var PageService
+     */
+	protected $pageService;
 
 	/**
      * @config
@@ -34,14 +44,23 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
-		// set the paths as the document root
-		$paths = array();
-		if(is_array($this->config()->paths)) {
-			foreach($this->config()->paths as $path) {
-				$paths[] = Director::BaseFolder() . "/" . $path;
+		$this->setService($this->config()->service);
+
+		$this->pageService = new StyleGuide\PageService($this);
+
+		// redirect to the first action route
+		if(!$this->request->param('Action')) {
+			$page = $this->pageService->getPages()->first();
+			$this->redirect($page->Link);
+		}
+
+		// if no template set on the action route then redirect to the first child
+		if(!$this->request->param('ChildAction') && !$this->pageService->getTemplate()) {
+			$page = $this->pageService->getActivePage();
+			if(isset($page->Children)) {
+				$childPage = $page->Children->first();
+				$this->redirect($childPage->Link);
 			}
-		} elseif(is_string($this->config()->paths)) {
-			$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
 		}
 
 		if(!$this->config()->service || empty($paths)) {
@@ -49,7 +68,6 @@ class StyleGuideController extends ContentController {
 		}
 
 		// set the service
-		$this->setService($this->config()->service, $paths);
 		$this->setRequirements();
 
 		// load the fixture file
@@ -57,17 +75,36 @@ class StyleGuideController extends ContentController {
 	}
 
 	public function index() {
-		return $this->renderWith(array('StyleGuideController'));
+		// render the set template for the route
+		if($template = $this->pageService->getTemplate()) {
+			return $this->renderWith(array(
+                $template,
+                'StyleGuideController'
+            ));
+		}
+		return $this;
 	}
 
 	/**
 	 * Set the styleguide service on init.
-	 * @param String $name The name of the styleguide service.
-	 * @param String $url  Project base url.
+	 * @param String $name 		The name of the styleguide service.
+	 * @param String $paths  	Project base url.
 	 */
-	public function setService($name, $url) {
+	public function setService($name, $paths = null) {
+		if(!$paths) {
+			// set the paths as the document root
+			$paths = array();
+			if(is_array($this->config()->paths)) {
+				foreach($this->config()->paths as $path) {
+					$paths[] = Director::BaseFolder() . "/" . $path;
+				}
+			} elseif(is_string($this->config()->paths)) {
+				$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
+			}
+		}
+
 		$this->styleguide_service = Injector::inst()->create($name);
-		$this->styleguide_service->setURL($url);
+		$this->styleguide_service->setURL($paths);
 	}
 
 	/**
@@ -98,59 +135,16 @@ class StyleGuideController extends ContentController {
 	 * Used to populate templates.
 	 */
 	public function loadFixture() {
-		$fixtureFile = project() . '/styleguide/styleguide.yml';
-
-		$realFile = realpath(BASE_PATH.'/'.$fixtureFile);
-		$baseDir = realpath(Director::baseFolder());
-		if(!$realFile || !file_exists($realFile)) {
-			return;
-		} else if(substr($realFile,0,strlen($baseDir)) != $baseDir) {
-			return;
-		} else if(substr($realFile,-4) != '.yml') {
-			return;
-		}
-
-		$factory = Injector::inst()->create('StyleGuideFixtureFactory');
-		$blueprint = Injector::inst()->create('StyleGuideBlueprint', 'StyleGuide', 'StyleGuide');
-		$factory->define('StyleGuide', $blueprint);
-		$fixture = Injector::inst()->create('YamlFixture', $fixtureFile);
-		$fixture->writeInto($factory);
-
-		$this->factory = $factory;
+		$parser = new StyleGuide\YamlParser(project() . '/styleguide/fixture.yml');
+        $this->fixture = $parser->get('Template');
 	}
 
-	public function getFactory() {
-		return $this->factory;
+	public function getFixture() {
+		return $this->fixture;
 	}
 
-	/**
-	 * Get the main navigation to top level sections with additional `Home` and `All` links.
-	 * @return ArrayList
-	 */
 	public function getNavigation() {
-		$navigation = $this->styleguide_service->getNavigation();
-
-		foreach($navigation as $section) {
-			$section->request = $this->request;
-		}
-		
-		// add the home link.
-		$navigation->unshift(new ArrayData(array(
-			'Link' => $this->Link(),
-			'Title' => 'Home',
-			'Description' => 'View the style-guide home.',
-			'Active' => $this->isHome()
-		)));
-
-		// add the all link.
-		$navigation->push(new ArrayData(array(
-			'Link' => $this->Link('all'),
-			'Title' => 'All',
-			'Description' => 'View all style-guide sections.',
-			'Active' => $this->isAll()
-		)));
-
-		return $navigation;
+		return $this->pageService->getPages();
 	}
 
 	/**
@@ -168,12 +162,12 @@ class StyleGuideController extends ContentController {
 	public function getSections() {
 		$sections = null;
 
-		if($action = $this->request->param('Action')) {
+		if($action = $this->request->param('ChildAction')) {
 			if($action == 'all') {
 				$sections = $this->styleguide_service->getSections();
 			} else {
 				$sections = $this->styleguide_service->getSectionChildren($action);
-				$sections->unshift($this->styleguide_service->getSection($action)); // add the parent
+				$sections->unshift($this->styleguide_service->getSection($action));
 			}
 		}
 
@@ -181,36 +175,23 @@ class StyleGuideController extends ContentController {
 	}
 
 	/**
-	 * Check if on the `home` route.
-	 * @return boolean
-	 */
-	public function isHome() {
-		return $this->request->param('Action') == '';
-	}
-
-	/**
-	 * Check if on the `All` route.
-	 * @return boolean
-	 */
-	public function isAll() {
-		return $this->request->param('Action') == 'all';
-	}
-
-	/**
 	 * Get a link to the controller with optional action parameter.
 	 * @param String $action
+	 * @param String $childAction
+	 * @return String
 	 */
-	public function Link($action = null) {
-		return self::getLink($action);
+	public function Link($action = null, $childAction = null) {
+		return self::getLink($action, $childAction);
 	}
 
 	/**
 	 * Create a string suitable for a link in the style guide.
 	 * @param  String $action
+	 * @param  String $childAction
 	 * @return String
 	 */
-	public static function getLink($action = null) {
-	    return Controller::join_links('style-guide', $action);
+	public static function getLink($action = null, $childAction = null) {
+	    return Controller::join_links('sg', $action, $childAction);
 	}
 
 }
