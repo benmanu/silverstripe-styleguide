@@ -13,7 +13,10 @@ class YamlParser {
 
     public function __construct($path) {
         if(!$this->isYaml($path)) {
-            throw new Exception("You can only process .yml files.", 1);
+            throw new \Exception(sprintf(
+                "You can only process .yml files. (Path: %s)",
+                $path
+            ), 1);
         }
 
         $this->path = $path;

@@ -19,6 +19,10 @@ class PageService {
         $parser = new YamlParser(project() . '/styleguide/pages.yml');
         
         $pages = $parser->get('Page');
+
+        if(!$pages || empty($pages)) {
+            $pages = array();
+        }
         
         // add the styleguide page
         $children = $this->controller->styleguide_service->getNavigation();
@@ -107,7 +111,7 @@ class PageService {
     public function getTemplate() {
         $page = $this->getActivePage();
 
-        if($page->Template) {
+        if($page && $page->Template) {
             return $page->Template;
         }
 

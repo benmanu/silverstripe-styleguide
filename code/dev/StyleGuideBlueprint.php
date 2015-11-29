@@ -82,7 +82,7 @@ class StyleGuideBlueprint extends FixtureBlueprint {
 	 * @param  Array $fixtures See {@link createObject()}
 	 * @return String Fixture database ID, or the original value
 	 */
-	protected function parseValue($value, $fixtures = null) {
+	protected function parseValue($value, $fixtures = null, &$class = null) {
 		if(substr($value,0,2) == '=>') {
 			// Parse a dictionary reference - used to set foreign keys
 			$ref = explode('.', substr($value,2));

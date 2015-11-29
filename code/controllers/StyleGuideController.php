@@ -44,6 +44,10 @@ class StyleGuideController extends ContentController {
 	public function init() {
 		parent::init();
 
+		if(!$this->config()->service) {
+			$this->httpError(404);
+		}
+
 		$this->setService($this->config()->service);
 
 		$this->pageService = new StyleGuide\PageService($this);
@@ -63,10 +67,6 @@ class StyleGuideController extends ContentController {
 			}
 		}
 
-		if(!$this->config()->service || empty($paths)) {
-			$this->httpError(404);
-		}
-
 		// set the service
 		$this->setRequirements();
 
@@ -82,7 +82,7 @@ class StyleGuideController extends ContentController {
                 'StyleGuideController'
             ));
 		}
-		return $this;
+		return $this->renderWith(array('StyleGuideController'));
 	}
 
 	/**
