@@ -44,12 +44,20 @@ class StyleGuideController extends ContentController {
 			$paths[] = Director::BaseFolder() . "/" . $this->config()->paths;
 		}
 
+		if(!$this->config()->service || empty($paths)) {
+			$this->httpError(404);
+		}
+
 		// set the service
 		$this->setService($this->config()->service, $paths);
 		$this->setRequirements();
 
 		// load the fixture file
 		$this->loadFixture();
+	}
+
+	public function index() {
+		return $this->renderWith(array('StyleGuideController'));
 	}
 
 	/**
