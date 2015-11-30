@@ -16,21 +16,21 @@ Define the base css/scss folder through the site config.
   	  js_files:
     	- 'themes/default/js/script.js' 	// any js theme files to include in the styleguide.
 
-Opens up a controller route `/style-guide`.
+Opens up a controller route `/sg`.
 
-Comments tagged with `Styleguide 1.0`, `Styleguide 2.0` etc are used to create the main navigation.
+Comments tagged with `Styleguide 1.0`, `Styleguide 2.0` etc are used to create the main `/sg/style-guide` navigation.
 Sub-navigation sections are generated with tags of `Styleguide 1.1`, `Styleguide 1.2` etc.
 Sub-navigation children are made up of section modifiers like `.btn-default`, `.btn-primary`.
 
 ## Example
-You can use the styleguide module scss/css as an example using the below config.
+You can use the styleguide module scss/css as an example using the below config in your site `_config/config.yml` file.
 
 	StyleGuideController:
   	  paths: 'styleguide/scss'
   	  css_files:
     	- 'styleguide/dist/css/screen.css'
 
-## Kitchen Sink Example
+## Kitchen Sink CSS Example
 	/*
 	#Components
 
@@ -111,6 +111,18 @@ Alternatively you can reference other non-template values to populate relationsh
 
 ## Pages
 A yml fixture file can be created in the **(project)/styleguide/** directory called **pages.yml**, used to create additional main and children pages. The `Template` parameter should be the same name as a SilverStripe template file in your theme.
+
+All template files should be placed under the key **Page**, example:
+
+    Page:
+      documentation:
+        Title: Documentation
+        Template: SGDocumentation
+      performanceMonitoring:
+        Title: Performance Monitoring
+        Template: SGPerformanceMonitoring
+
+Alternatively you can populate a `Children` parameter referencing a list of child pages to include in the sub-navigation:
 
 	Documentation:
 	  general:
