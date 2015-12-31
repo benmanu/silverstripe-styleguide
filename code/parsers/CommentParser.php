@@ -7,7 +7,8 @@
  */
 namespace StyleGuide;
 
-class CommentParser {
+class CommentParser
+{
     /**
      * File being parsed
      *
@@ -42,7 +43,8 @@ class CommentParser {
      * @param \SplFileObject $file
      * @param array $options
      */
-    public function __construct(\SplFileObject $file, array $options = array()) {
+    public function __construct(\SplFileObject $file, array $options = array())
+    {
         $this->file = $file;
         $this->options = $options;
     }
@@ -53,7 +55,8 @@ class CommentParser {
      *
      * @return array
      */
-    public function getBlocks() {
+    public function getBlocks()
+    {
         if (!$this->parsed) {
             $this->parseBlocks();
         }
@@ -65,7 +68,8 @@ class CommentParser {
      *
      * @return array
      */
-    protected function parseBlocks() {
+    protected function parseBlocks()
+    {
         $this->blocks = array();
         $currentBlock = '';
         // Do we need insideSingleLineBlock? It doesn't seem to be used anywhere
@@ -131,7 +135,8 @@ class CommentParser {
      *
      * @return string
      */
-    protected function normalize($block) {
+    protected function normalize($block)
+    {
         // Remove any [whitespace]*'s from the start of each line
         $normalizedBlock = preg_replace('-^\s*\*+-m', '', $block);
 
@@ -162,7 +167,8 @@ class CommentParser {
      *
      * @return boolean
      */
-    public static function isSingleLineComment($line) {
+    public static function isSingleLineComment($line)
+    {
         return (bool) preg_match('-^\s*//-', $line);
     }
 
@@ -173,7 +179,8 @@ class CommentParser {
      *
      * @return boolean
      */
-    public static function isStartMultiLineComment($line) {
+    public static function isStartMultiLineComment($line)
+    {
         return (bool) preg_match('-^\s*/\*-', $line);
     }
 
@@ -184,7 +191,8 @@ class CommentParser {
      *
      * @return boolean
      */
-    public static function isEndMultiLineComment($line) {
+    public static function isEndMultiLineComment($line)
+    {
         return (bool) preg_match('-.*\*/-', $line);
     }
 
@@ -195,7 +203,8 @@ class CommentParser {
      *
      * @return string
      */
-    public static function parseSingleLineComment($line) {
+    public static function parseSingleLineComment($line)
+    {
         return rtrim(preg_replace('-^\s*//-', '', $line));
     }
 
@@ -206,7 +215,8 @@ class CommentParser {
      *
      * @return string
      */
-    public static function parseMultiLineComment($line) {
+    public static function parseMultiLineComment($line)
+    {
         $parsed = preg_replace('-^\s*/\*+-', '', $line);
         $parsed = preg_replace('-\*/-', '', $parsed);
         return rtrim($parsed);

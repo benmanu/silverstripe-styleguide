@@ -1,12 +1,13 @@
 <?php
-class KSSModifier extends ViewableData {
+class KSSModifier extends ViewableData
+{
 
-	/**
-	 * @var KSSSection
-	 */
-	protected $section;
+    /**
+     * @var KSSSection
+     */
+    protected $section;
 
-	/**
+    /**
      * Name of the modifier
      *
      * @var string
@@ -34,20 +35,21 @@ class KSSModifier extends ViewableData {
      */
     protected $extendedClass = null;
 
-	private static $casting = array(
-		'Name' 			=> 'Varchar',
-		'ClassName' 	=> 'Varchar',
-		'Description' 	=> 'Varchar',
-		'ExampleHtml' 	=> 'HTMLText'
-	);
+    private static $casting = array(
+        'Name'            => 'Varchar',
+        'ClassName'    => 'Varchar',
+        'Description'    => 'Varchar',
+        'ExampleHtml'    => 'HTMLText'
+    );
 
-	public function __construct($name, $description, $section) {
-		$this->section = $section;
-		$this->setName($name);
+    public function __construct($name, $description, $section)
+    {
+        $this->section = $section;
+        $this->setName($name);
         $this->setDescription($description);
-	}
+    }
 
-	/**
+    /**
      * Returns the name of the modifier
      *
      * @return string
@@ -68,7 +70,7 @@ class KSSModifier extends ViewableData {
         $this->name = $name;
     }
 
-	/**
+    /**
      * Returns the description of the modifier
      *
      * @return string
@@ -194,7 +196,7 @@ class KSSModifier extends ViewableData {
         return trim($name);
     }
 
-	/**
+    /**
      * Returns a string of specified html with inserted class names in the correct
      * places for modifiers and extenders.
      *
@@ -231,9 +233,9 @@ class KSSModifier extends ViewableData {
         return $html;
     }
 
-	public function getReference() {
-		$filter = URLSegmentFilter::create();
-		return $filter->filter($this->section->getReference() . '-' . $this->getName());
-	}
-
+    public function getReference()
+    {
+        $filter = URLSegmentFilter::create();
+        return $filter->filter($this->section->getReference() . '-' . $this->getName());
+    }
 }

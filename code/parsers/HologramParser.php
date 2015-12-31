@@ -2,7 +2,8 @@
 
 use StyleGuide\Parser;
 
-class HologramParser extends Parser {
+class HologramParser extends Parser
+{
 
     /**
      * Adds a section to the Sections collection
@@ -10,7 +11,8 @@ class HologramParser extends Parser {
      * @param string $comment
      * @param \splFileObject $file
      */
-    protected function addSection($comment, \splFileObject $file) {
+    protected function addSection($comment, \splFileObject $file)
+    {
         $section = new HologramSection($comment, $file);
         $this->sections[] = $section;
     }
@@ -20,8 +22,8 @@ class HologramParser extends Parser {
      *
      * @return array
      */
-    public function getSections() {
+    public function getSections()
+    {
         return $this->sections;
     }
-
 }

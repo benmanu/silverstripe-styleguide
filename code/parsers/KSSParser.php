@@ -2,7 +2,8 @@
 
 use StyleGuide\Parser;
 
-class KSSParser extends Parser {
+class KSSParser extends Parser
+{
 
     /**
      * A flag on whether sections have been sorted
@@ -17,7 +18,8 @@ class KSSParser extends Parser {
      * @param string $comment
      * @param \splFileObject $file
      */
-    protected function addSection($comment, \splFileObject $file) {
+    protected function addSection($comment, \splFileObject $file)
+    {
         if (self::isKssBlock($comment)) {
             $section = new KSSSection($comment, $file);
             $this->sections[$section->getReference(true)] = $section;
@@ -35,7 +37,8 @@ class KSSParser extends Parser {
      *
      * @throws UnexepectedValueException if reference does not exist
      */
-    public function getSection($reference) {
+    public function getSection($reference)
+    {
         $reference = KSSSection::trimReference($reference);
         $reference = strtolower(KSSSection::normalizeReference($reference));
 
@@ -52,7 +55,8 @@ class KSSParser extends Parser {
      *
      * @return array
      */
-    public function getSections() {
+    public function getSections()
+    {
         $this->sortSections();
         return $this->sections;
     }
@@ -62,7 +66,8 @@ class KSSParser extends Parser {
      *
      * @return array
      */
-    public function getTopLevelSections() {
+    public function getTopLevelSections()
+    {
         $this->sortSectionsByDepth();
         $topLevelSections = array();
 
@@ -84,7 +89,8 @@ class KSSParser extends Parser {
      *
      * @return array
      */
-    public function getSectionChildren($reference, $levelsDown = null) {
+    public function getSectionChildren($reference, $levelsDown = null)
+    {
         $reference = strtolower(KSSSection::normalizeReference($reference));
         $this->sortSections();
 
@@ -121,7 +127,8 @@ class KSSParser extends Parser {
      *
      * @return void
      */
-    protected function sortSections() {
+    protected function sortSections()
+    {
         if ($this->sectionsSortedByReference) {
             return;
         }
@@ -135,7 +142,8 @@ class KSSParser extends Parser {
      *
      * @return void
      */
-    protected function sortSectionsByDepth() {
+    protected function sortSectionsByDepth()
+    {
         uasort($this->sections, 'KSSSection::depthSort');
         $this->sectionsSortedByReference = false;
     }
@@ -147,11 +155,11 @@ class KSSParser extends Parser {
      *
      * @return boolean
      */
-    public static function isKssBlock($comment) {
+    public static function isKssBlock($comment)
+    {
         $commentLines = explode("\n\n", $comment);
         $lastLine = end($commentLines);
         return preg_match('/^\s*Styleguide \w/i', $lastLine) ||
             preg_match('/^\s*No styleguide reference/i', $lastLine);
     }
-
 }
