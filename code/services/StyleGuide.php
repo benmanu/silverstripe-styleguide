@@ -1,14 +1,14 @@
 <?php
-interface StyleGuide {
+interface StyleGuide
+{
 
-	public function setURL($url);
+    public function setURL($url);
 
-	public function getNavigation();
+    public function getNavigation();
 
-	public function getSection($reference);
+    public function getSection($reference);
 
-	public function getSections();
+    public function getSections();
 
-	public function getSectionChildren($reference, $levelsDown = null);
-
+    public function getSectionChildren($reference, $levelsDown = null);
 }
