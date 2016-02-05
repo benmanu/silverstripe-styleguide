@@ -75,6 +75,8 @@ See the KSS documentation for further details, with a couple of exceptions being
 
 All comment descriptions are treated as markdown and parsed through [parsedown](http://parsedown.org/).
 
+### Section And SectionTemplate
+
 ## Fixtures
 A yml fixture file can be created in the **(project)/styleguide/** directory called **fixture.yml**, used to populate template variables. 
 

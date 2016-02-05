@@ -165,9 +165,13 @@ class KSSSection extends Section {
                     $modifier = new KSSModifier($name, $description, $this);
 
                     // If the CSS has a markup, pass it to the modifier for the example HTML
+                    // or else use the template if one is defined.
                     if($markup = $this->getMarkup()) {
                         $modifier->setMarkup($markup);
+                    } elseif($template = $this->getTemplate()) {
+                        $modifier->setMarkup($template);
                     }
+
                     $modifiers->push($modifier);
                 }
             }
