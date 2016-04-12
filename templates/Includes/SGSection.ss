@@ -37,10 +37,10 @@
 						<a title="Click to display the code." class="sg-example__toggle">Code</a>
 					</div>
 					<div class="sg-example">
-						$Template
+						$getTemplate
 					</div>
 					<div class="sg-code">
-				    	<pre class="prettyprint">$Template.XML</pre>
+				    	<pre class="prettyprint">$getTemplate.XML</pre>
 				    </div>
 				</div>
 		    </div>
