@@ -25,6 +25,11 @@ class StyleGuideController extends ContentController {
      * @config
      */
 	private static $service = '';
+    
+    /**
+     * @config
+     */
+    private static $prettify_url = '';
 
 	/**
      * @config
@@ -127,7 +132,7 @@ class StyleGuideController extends ContentController {
 		// styleguide requirements
 		Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
 		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
-		Requirements::javascript('//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert');
+		Requirements::javascript($this->config()->prettify_url);
 	}
 
 	/**
