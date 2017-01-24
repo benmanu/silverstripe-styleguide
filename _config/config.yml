@@ -3,3 +3,4 @@ Name: StyleGuide
 ---
 StyleGuideController:
   service: 'KSSService'
+  prettify_url: '//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert'
