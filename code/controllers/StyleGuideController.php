@@ -116,7 +116,12 @@ class StyleGuideController extends ContentController {
 	 * Set the styleguides css and js requirements.
 	 */
 	public function setRequirements() {
-		// theme requirements
+		// styleguide requirements
+		Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
+		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
+		Requirements::javascript($this->config()->prettify_url);
+        
+        	// theme requirements
 		if($files = $this->config()->css_files) {
 			foreach($files as $file) {
 				Requirements::css($file);
@@ -128,11 +133,6 @@ class StyleGuideController extends ContentController {
 				Requirements::javascript($file);
 			}
 		}
-
-		// styleguide requirements
-		Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
-		Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
-		Requirements::javascript($this->config()->prettify_url);
 	}
 
 	/**
