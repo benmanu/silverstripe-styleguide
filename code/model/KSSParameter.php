@@ -1,12 +1,17 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
+use SilverStripe\View\ViewableData;
+
 class KSSParameter extends ViewableData {
 
-	/**
-	 * @var KSSSection
-	 */
-	protected $section;
+    /**
+     * @var KSSSection
+     */
+    protected $section;
 
-	/**
+    /**
      * Name of the parameter
      *
      * @var string
@@ -20,19 +25,19 @@ class KSSParameter extends ViewableData {
      */
     protected $description = '';
 
-	private static $casting = array(
-		'Name' 			=> 'Varchar',
-		'Description' 	=> 'Varchar'
-	);
+    private static $casting = array(
+        'Name' 			=> 'Varchar',
+        'Description' 	=> 'Varchar'
+    );
 
-	public function __construct($name, $description = '', $section) {
-		$this->section = $section;
+    public function __construct($name, $description = '', $section) {
+        $this->section = $section;
 
-		$this->setName($name);
+        $this->setName($name);
         $this->setDescription($description);
-	}
+    }
 
-	/**
+    /**
      * Returns the name of the parameter
      *
      * @return string

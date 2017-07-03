@@ -1,4 +1,7 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
 interface StyleGuide {
 
 	public function setURL($url);

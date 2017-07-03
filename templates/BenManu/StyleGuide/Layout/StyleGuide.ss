@@ -6,7 +6,7 @@
 			<% end_loop %>
 		</div>
 		<div class="sg-col-sm-3">
-			<% include SGSubNavigation %>
+			<% include BenManu/StyleGuide/SGSubNavigation %>
 		</div>
 	</div>
 <% end_if %>

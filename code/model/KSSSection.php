@@ -1,28 +1,30 @@
 <?php
 
-use StyleGuide\Section;
+namespace BenManu\StyleGuide;
+
+use SilverStripe\ORM\ArrayList;
 
 class KSSSection extends Section {
 
-	private static $casting = array(
-		'Title' 		=> 'Varchar',
-		'Description' 	=> 'HTMLText',
+    private static $casting = array(
+        'Title' 		=> 'Varchar',
+        'Description' 	=> 'HTMLText',
         'Template'      => 'HTMLText',
-		'Markup' 		=> 'HTMLText',
-		'MarkupNormal'  => 'HTMLText',
-		'Deprecated' 	=> 'Varchar',
-		'Compatibility' => 'Varchar',
-		'Section'		=> 'Varchar',
-		'Reference' 	=> 'Varchar'
-	);
+        'Markup' 		=> 'HTMLText',
+        'MarkupNormal'  => 'HTMLText',
+        'Deprecated' 	=> 'Varchar',
+        'Compatibility' => 'Varchar',
+        'Section'		=> 'Varchar',
+        'Reference' 	=> 'Varchar'
+    );
 
-	/**
+    /**
      * Returns the title of the section
      *
      * @return string
      */
-	public function getTitle() {
-		$title = '';
+    public function getTitle() {
+        $title = '';
 
         $titleComment = $this->getTitleComment();
         if (preg_match('/^\s*#+\s*(.+)/', $titleComment, $matches)) {
@@ -35,17 +37,17 @@ class KSSSection extends Section {
         }
 
         return $title;
-	}
+    }
 
-	/**
+    /**
      * Returns the description for the section
      *
      * @return string
      */
-	public function getDescription() {
-		$descriptionSections = array();
+    public function getDescription() {
+        $descriptionSections = array();
 
-		foreach ($this->getCommentSections() as $commentSection) {
+        foreach ($this->getCommentSections() as $commentSection) {
             // Anything that is not the section comment or modifiers comment
             // must be the description comment
             if ($commentSection != $this->getReferenceComment()
@@ -63,81 +65,81 @@ class KSSSection extends Section {
             }
         }
 
-		$description = implode("\n\n", $descriptionSections);
+        $description = implode("\n\n", $descriptionSections);
 
-        return Parsedown::instance()->text($description);
-	}
+        return \Parsedown::instance()->text($description);
+    }
 
-	/**
+    /**
      * Returns the markup defined in the section
      *
      * @return string
      */
-	public function getMarkup() {
+    public function getMarkup() {
         if($markupComment = $this->getMarkupComment()) {
             return trim(preg_replace('/^\s*Markup:/i', '', $markupComment));
         }
-	}
+    }
 
-	/**
+    /**
      * Returns the markup for the normal element (without modifierclass)
      *
      * @param string $replacement Replacement for $modifierClass variable
      * @return void
      */
-	public function getMarkupNormal($replacement = '') {
+    public function getMarkupNormal($replacement = '') {
         return str_replace('$modifierClass', $replacement, $this->getMarkup());
-	}
+    }
 
-	/**
+    /**
      * Returns a boolean value regarding the presence of markup in the kss-block
      *
      * @return boolean
      */
     public function hasMarkup() {
-		return $this->getMarkup() !== null;
-	}
+        return $this->getMarkup() !== null;
+    }
 
     /**
      * Returns the deprecation notice defined in the section
      *
      * @return string
      */
-	public function getDeprecated() {
+    public function getDeprecated() {
         if ($deprecatedComment = $this->getDeprecatedComment()) {
             return trim(preg_replace('/^\s*Deprecated:/i', '', $deprecatedComment));
         }
-	}
+    }
 
-	/**
+    /**
      * Returns the experimental notice defined in the section
      *
      * @return string
      */
-	public function getExperimental() {
-		if($experimentalComment = $this->getExperimentalComment()) {
+    public function getExperimental() {
+        if($experimentalComment = $this->getExperimentalComment()) {
             return trim(preg_replace('/^\s*Experimental:/i', '', $experimentalComment));
         }
-	}
+    }
 
-	/**
+    /**
      * Returns the compatibility notice defined in the section
      *
      * @return string
      */
-	public function getCompatibility() {
-		if($compatibilityComment = $this->getCompatibilityComment()) {
+    public function getCompatibility() {
+        if($compatibilityComment = $this->getCompatibilityComment()) {
             return trim($compatibilityComment);
         }
-	}
+    }
 
-	/**
+    /**
      * Returns the modifiers used in the section
      *
      * @return array
      */
-	public function getModifiers() {
-		$lastIndent = null;
+    public function getModifiers() {
+        $lastIndent = null;
         $modifiers = new ArrayList();
 
         if($modiferComment = $this->getModifiersComment()) {
@@ -178,15 +180,15 @@ class KSSSection extends Section {
         }
 
         return $modifiers;
-	}
+    }
 
-	/**
+    /**
      * Returns the $parameters used in the section
      *
      * @return array
      */
-	public function getParameters() {
-		$lastIndent = null;
+    public function getParameters() {
+        $lastIndent = null;
         $parameters = new ArrayList();
 
         if($parameterComment = $this->getParametersComment()) {
@@ -211,27 +213,27 @@ class KSSSection extends Section {
         }
 
         return $parameters;
-	}
+    }
 
-	/**
-	 * Returns the template if defined, rendered with the fixture or controller.
-	 * 
-	 * @return HTMLText
-	 */
-	public function getTemplate() {
-		$template = null;
+    /**
+     * Returns the template if defined, rendered with the fixture or controller.
+     *
+     * @return HTMLText
+     */
+    public function getTemplate() {
+        $template = null;
 
         if($templateComment = $this->getTemplateComment()) {
-        	$template = trim(preg_replace('/^\s*Template:/i', '', $templateComment));
+            $template = trim(preg_replace('/^\s*Template:/i', '', $templateComment));
             $template = $this->getRenderedTemplate($template);
         }
 
-		return $template;
-	}
+        return $template;
+    }
 
     /**
      * Returns the section template if defined.
-     * 
+     *
      * @return HTMLText
      */
     public function getSectionTemplate() {
@@ -244,15 +246,15 @@ class KSSSection extends Section {
         return $template;
     }
 
-	/**
+    /**
      * Returns the reference number for the section
      *
      * @param boolean $trimmed OPTIONAL
      *
      * @return string
      */
-	public function getReference($trimmed = false) {
-		$reference = null;
+    public function getReference($trimmed = false) {
+        $reference = null;
         $referenceComment = $this->getReferenceComment();
         $referenceComment = preg_replace('/\.$/', '', $referenceComment);
 
@@ -263,7 +265,7 @@ class KSSSection extends Section {
         return ($trimmed && $reference !== null)
             ? self::trimReference($reference)
             : $reference;
-	}
+    }
 
     /**
      * Returns the reference dot delimited
@@ -274,16 +276,16 @@ class KSSSection extends Section {
         return self::normalizeReference($this->getReference());
     }
 
-	/**
+    /**
      * Checks if the Section has a reference
      *
      * @return boolean
      */
-	public function hasReference() {
-		return $this->getReference() !== null;
-	}
+    public function hasReference() {
+        return $this->getReference() !== null;
+    }
 
-	/**
+    /**
      * Checks to see if a reference is numeric
      *
      * @param string
@@ -617,13 +619,13 @@ class KSSSection extends Section {
         return $parametersComment;
     }
 
-	/**
-	 * Returns the part of the KSS Comment Block that contains the template
-	 * 
-	 * @return String
-	 */
-	protected function getTemplateComment() {
-		$templateComment = null;
+    /**
+     * Returns the part of the KSS Comment Block that contains the template
+     *
+     * @return String
+     */
+    protected function getTemplateComment() {
+        $templateComment = null;
 
         foreach ($this->getCommentSections() as $commentSection) {
             // Assume that the parameters section starts with $,%,@
@@ -633,12 +635,12 @@ class KSSSection extends Section {
             }
         }
 
-		return $templateComment;
-	}
+        return $templateComment;
+    }
 
     /**
      * Returns the part of the KSS Comment Block that contains the section template
-     * 
+     *
      * @return String
      */
     protected function getSectionTemplateComment() {
@@ -655,13 +657,13 @@ class KSSSection extends Section {
         return $templateComment;
     }
 
-	/**
-	 * Checks if the current section is the active route.
-	 * @return Boolean
-	 */
-	public function getActive() {
-		return $this->request->param('Action') == $this->getReferenceID();
-	}
+    /**
+     * Checks if the current section is the active route.
+     * @return Boolean
+     */
+    public function getActive() {
+        return $this->request->param('Action') == $this->getReferenceID();
+    }
 
     /**
      * Get the section reference formatted for url use.
@@ -671,19 +673,19 @@ class KSSSection extends Section {
         return "section-" . str_replace(".", "-", $this->getReference());
     }
 
-	/**
-	 * Returns the link to this section formatted on the StyleGuideController.
-	 * @return String
-	 */
-	public function getLink() {
-		return $this->getReferenceID();
-	}
+    /**
+     * Returns the link to this section formatted on the StyleGuideController.
+     * @return String
+     */
+    public function getLink() {
+        return $this->getReferenceID();
+    }
 
     public function forTemplate() {
         $template = $this->getSectionTemplate();
 
         if(!$template) {
-            $template = 'SGSection';
+            $template = __NAMESPACE__ . '\SGSection';
         }
 
         return $this->renderWith($template);

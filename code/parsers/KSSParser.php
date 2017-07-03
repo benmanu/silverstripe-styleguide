@@ -1,6 +1,9 @@
 <?php
 
-use StyleGuide\Parser;
+namespace BenManu\StyleGuide;
+
+use splFileObject;
+
 
 class KSSParser extends Parser {
 
@@ -125,7 +128,7 @@ class KSSParser extends Parser {
             return;
         }
 
-        uasort($this->sections, 'KSSSection::alphaDepthScoreSort');
+        uasort($this->sections, __NAMESPACE__. '\KSSSection::alphaDepthScoreSort');
         $this->sectionsSortedByReference = true;
     }
 
@@ -135,7 +138,7 @@ class KSSParser extends Parser {
      * @return void
      */
     protected function sortSectionsByDepth() {
-        uasort($this->sections, 'KSSSection::depthSort');
+        uasort($this->sections, __NAMESPACE__. '\KSSSection::depthSort');
         $this->sectionsSortedByReference = false;
     }
 

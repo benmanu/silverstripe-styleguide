@@ -1,12 +1,16 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
 /**
  * Parser
  *
  * Accepts an array of directories and parses them stylesheet files
  */
-namespace StyleGuide;
 
 use Symfony\Component\Finder\Finder;
+use splFileObject;
+
 
 class Parser {
 

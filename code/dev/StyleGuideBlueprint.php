@@ -1,18 +1,27 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
+
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Dev\FixtureBlueprint;
+use InvalidArgumentException;
+
 class StyleGuideBlueprint extends FixtureBlueprint {
 
 	public function __construct($name, $class = null, $defaults = array()) {
 		$this->name = $name;
 		$this->class = $class;
 	}
-	
+
 	public function createObject($identifier, $data = null, $fixtures = null) {
 		$class = $this->class;
 
 		$parsedItems = array(
 			'ID' => $identifier
 		);
-		
+
 		// Populate all field values, including relationships.
 		if($data) foreach($data as $fieldName => $fieldVal) {
 			if(is_array($fieldVal)) {
@@ -75,7 +84,7 @@ class StyleGuideBlueprint extends FixtureBlueprint {
 	}
 
 	/**
-	 * Parse a value from a fixture file.  If it starts with => 
+	 * Parse a value from a fixture file.  If it starts with =>
 	 * it will get an ID from the fixture dictionary
 	 *
 	 * @param String $fieldVal
