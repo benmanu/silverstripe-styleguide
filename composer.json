@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "~4.0.0-beta1",
+        "silverstripe/framework": "4.x-dev",
         "symfony/finder": "~2.8",
         "erusev/parsedown": "1.6.0"
     },
