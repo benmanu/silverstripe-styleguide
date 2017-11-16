@@ -1,8 +1,15 @@
 <?php
+
 /**
  * PageService
  */
-namespace StyleGuide;
+
+namespace BenManu\StyleGuide;
+
+use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\View\Parsers\URLSegmentFilter;
+use BenManu\StyleGuide\StyleGuide;
 
 class PageService {
 
@@ -27,16 +34,16 @@ class PageService {
         if(!$pages || empty($pages)) {
             $pages = array();
         }
-        
+
         // add the styleguide page
         $children = $this->controller->styleguide_service->getNavigation();
 
         foreach($children as $child) {
             $child->request = $this->controller->request;
-            $child->setField('Template', 'StyleGuide');
+            $child->setField('Template', StyleGuide::class);
         }
 
-        $pages = array_merge(array('StyleGuide' => new \ArrayData(array(
+        $pages = array_merge(array('StyleGuide' => new ArrayData(array(
             'ID'        => 'styleGuide',
             'Title'     => 'Style Guide',
             'Children'  => $children
@@ -46,7 +53,7 @@ class PageService {
     }
 
     public function getPages() {
-        $navigation = new \ArrayList();
+        $navigation = new ArrayList();
 
         // Add the custom navigation.
         if(isset($this->pages)) foreach($this->pages as $item) {
@@ -65,7 +72,7 @@ class PageService {
 
                 // if active and has children
                 if($active && isset($item->Children)) {
-                    $children = new \ArrayList();
+                    $children = new ArrayList();
 
                     foreach($item->Children as $childItem) {
                         $childTitle = $childItem->Title;
@@ -80,7 +87,7 @@ class PageService {
                             'Template'  => $childItem->Template
                         );
 
-                        $children->push(new \ArrayData($childNav));
+                        $children->push(new ArrayData($childNav));
                     }
 
                     $nav['Children'] = $children;
@@ -88,7 +95,7 @@ class PageService {
 
                 // $nav = array_merge($item, $nav);
 
-                $navigation->push(new \ArrayData($nav));
+                $navigation->push(new ArrayData($nav));
             }
         }
 
@@ -130,7 +137,7 @@ class PageService {
      * @return string A filtered path compatible with RFC 3986
      */
     protected function fixURLSegment($rawSegment) {
-        $filter = \URLSegmentFilter::create();
+        $filter = URLSegmentFilter::create();
         return $filter->filter($rawSegment);
     }
 

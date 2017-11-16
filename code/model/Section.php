@@ -1,12 +1,17 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
+use SilverStripe\Control\Controller;
+use SilverStripe\View\ViewableData;
+use SplFileObject;
+
 /**
  * Section
  *
  * A Comment Block that represents a single section.
  */
-namespace StyleGuide;
-
-class Section extends \ViewableData {
+class Section extends ViewableData {
 
     /**
      * The raw Comment Block
@@ -52,7 +57,7 @@ class Section extends \ViewableData {
      * @return String           HTMLText string of the rendered template.
      */
     public function getRenderedTemplate($template) {
-        $controller = \Controller::curr();
+        $controller = Controller::curr();
         $fixture = $controller->getFixture();
 
         // if the factory is set and the fixture object exists render the template with
@@ -61,7 +66,7 @@ class Section extends \ViewableData {
             if(array_key_exists($template, $fixture)) {
                 $obj = $fixture[$template];
                 return $obj->renderWith($template);
-            }  
+            }
         }
 
         return $controller->renderWith($template);

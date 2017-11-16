@@ -1,6 +1,6 @@
 ---
 Name: kmlroutes
 ---
-Director:
+SilverStripe\Control\Director:
   rules:
-    'sg/$Action/$ChildAction': 'StyleGuideController'
+    sg/$Action/$ChildAction: BenManu\StyleGuide\StyleGuideController

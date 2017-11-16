@@ -1,27 +1,27 @@
 {
-	"name": "benmanu/silverstripe-styleguide",
-	"description": "Generates a styleguide for a SilverStripe theme",
-	"type": "silverstripe-module",
-	"homepage": "https://github.com/benmanu/silverstripe-styleguide",
-	"keywords": ["silverstripe", "styleguide", "kss"],
-	"support": {
-		"issues": "https://github.com/benmanu/silverstripe-styleguide/issues"
-	},
-	"authors": [
-		{
-			"name": "benmanu",
-			"email": "bmanu10@gmail.com"
-		}
-	],
-	"require": {
-		"silverstripe/framework": "~3.2",
-		"symfony/finder": "~2.8",
-		"erusev/parsedown": "1.6.0"
-	},
-	"require-dev": {
-		"phpunit/PHPUnit": "~3.7@stable"
-	},
-	"extra": {
-		"installer-name": "styleguide"
-	}
+    "name": "benmanu/silverstripe-styleguide",
+    "description": "Generates a styleguide for a SilverStripe theme",
+    "type": "silverstripe-module",
+    "homepage": "https://github.com/benmanu/silverstripe-styleguide",
+    "keywords": ["silverstripe", "styleguide", "kss"],
+    "support": {
+        "issues": "https://github.com/benmanu/silverstripe-styleguide/issues"
+    },
+    "authors": [
+        {
+            "name": "benmanu",
+            "email": "bmanu10@gmail.com"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "4.x-dev",
+        "symfony/finder": "~2.8",
+        "erusev/parsedown": "1.6.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "~3.7@stable"
+    },
+    "extra": {
+        "installer-name": "styleguide"
+    }
 }

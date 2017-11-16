@@ -1,4 +1,12 @@
 <?php
+
+namespace BenManu\StyleGuide;
+
+
+use SilverStripe\View\Parsers\URLSegmentFilter;
+use SilverStripe\View\ViewableData;
+
+
 class KSSModifier extends ViewableData {
 
 	/**
