@@ -1,7 +1,7 @@
 {
     "name": "benmanu/silverstripe-styleguide",
     "description": "Generates a styleguide for a SilverStripe theme",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "homepage": "https://github.com/benmanu/silverstripe-styleguide",
     "keywords": ["silverstripe", "styleguide", "kss"],
     "support": {
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "4.x-dev",
+        "silverstripe/framework": "^4",
         "symfony/finder": "~2.8",
         "erusev/parsedown": "1.6.0"
     },
@@ -22,6 +22,9 @@
         "phpunit/PHPUnit": "~3.7@stable"
     },
     "extra": {
-        "installer-name": "styleguide"
+        "installer-name": "styleguide",
+        "expose": [
+            "dist"
+        ]
     }
 }

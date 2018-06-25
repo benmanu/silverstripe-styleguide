@@ -130,8 +130,8 @@ class StyleGuideController extends ContentController {
     public function setRequirements() {
 
         // styleguide requirements
-        Requirements::css(STYLEGUIDE_BASE . '/dist/css/screen.css');
-        Requirements::javascript(STYLEGUIDE_BASE . '/dist/js/core.js');
+        Requirements::css( 'benmanu/silverstripe-styleguide: dist/css/screen.css');
+        Requirements::javascript('benmanu/silverstripe-styleguide: dist/js/core.js');
         Requirements::javascript($this->config()->prettify_url);
 
         // theme requirements
